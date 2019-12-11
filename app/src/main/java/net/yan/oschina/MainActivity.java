@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 .addAsFragment(false)
                 .mode(EasyNavigationBar.MODE_ADD_VIEW)
                 .addCustomView(view)
-                .iconSize(30)
-                .tabTextSize(15)
-                .tabTextTop(5)
-                .selectTextColor(Color.parseColor("#24cf5f"))
+                .iconSize(30)//图标大小
+                .tabTextSize(15)//文字大小
+                .tabTextTop(5)//文字间隔
+                .selectTextColor(Color.parseColor("#24cf5f"))//文字在点击后的颜色
                 .fragmentManager(getSupportFragmentManager())
                 .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
