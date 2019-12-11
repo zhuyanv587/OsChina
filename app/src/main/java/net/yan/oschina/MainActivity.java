@@ -2,7 +2,10 @@ package net.yan.oschina;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -21,12 +24,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    @BindView(R.id.bar)
     EasyNavigationBar bar;
     private String[] tabText = {"综合", "动弹", "发现", "我的"};
     //未选中icon
-    private int[] normalIcon = {R.mipmap.news_normal, R.mipmap.tweet_normal, R.mipmap.discovery_normal, R.mipmap.my_normal};
+    private int[] normalIcon = {R.mipmap.ic_nav_news_normal, R.mipmap.ic_nav_tweet_normal, R.mipmap.ic_nav_discover_normal, R.mipmap.ic_nav_my_normal};
     //选中时icon
-    private int[] selectIcon = {R.mipmap.news_light, R.mipmap.tweet_light, R.mipmap.discovery_light, R.mipmap.my_light};
+    private int[] selectIcon = {R.mipmap.ic_nav_news_actived, R.mipmap.ic_nav_tweet_actived, R.mipmap.ic_nav_discover_actived, R.mipmap.ic_nav_my_pressed};
 
     private List<Fragment> fragments = new ArrayList<>();
     private Handler mHandler = new Handler();
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bar = findViewById(R.id.bar);
+        ButterKnife.bind(this);
 
         fragments.add(new NewsFragment());
         fragments.add(new Tweetragment());
@@ -55,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 .addAsFragment(false)
                 .mode(EasyNavigationBar.MODE_ADD_VIEW)
                 .addCustomView(view)
+                .iconSize(30)
+                .tabTextSize(15)
+                .tabTextTop(5)
+                .selectTextColor(Color.parseColor("#24cf5f"))
                 .fragmentManager(getSupportFragmentManager())
                 .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
@@ -64,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             mHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //＋ 旋转动画
+                                    //加号旋转动画
                                     if (flag) {
                                         bar.getCustomAddView().animate().rotation(180).setDuration(400);
                                     } else {
@@ -78,5 +86,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).build();
     }
-    //jaskdfjadks
 }
