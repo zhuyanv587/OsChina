@@ -2,7 +2,10 @@ package net.yan.oschina;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.bar)
 
     EasyNavigationBar bar;
     private String[] tabText = {"综合", "动弹", "发现", "我的"};
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bar = findViewById(R.id.bar);
+        ButterKnife.bind(this);
 
         fragments.add(new NewsFragment());
         fragments.add(new Tweetragment());
@@ -55,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 .addAsFragment(false)
                 .mode(EasyNavigationBar.MODE_ADD_VIEW)
                 .addCustomView(view)
+                .iconSize(20)
+                .selectTextColor(Color.parseColor("#24CF5F"))
                 .fragmentManager(getSupportFragmentManager())
                 .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
@@ -78,5 +84,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).build();
     }
-    //jaskdfjadks
+
 }
