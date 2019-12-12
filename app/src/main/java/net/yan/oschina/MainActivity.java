@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 .iconSize(30)//图标大小
                 .tabTextSize(15)//文字大小
                 .tabTextTop(5)//文字间隔
-                .selectTextColor(Color.parseColor("#24cf5f"))//文字在点击后的颜色
+                .selectTextColor(R.color.primary)//文字在点击后的颜色
                 .fragmentManager(getSupportFragmentManager())
                 .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
