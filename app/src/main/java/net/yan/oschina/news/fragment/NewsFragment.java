@@ -1,4 +1,6 @@
 package net.yan.oschina.news.fragment;
 
-public class NewsFragment extends androidx.fragment.app.Fragment {
+import androidx.fragment.app.Fragment;
+
+public class NewsFragment extends Fragment {
 }
