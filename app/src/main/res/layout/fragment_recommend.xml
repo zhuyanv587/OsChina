@@ -8,12 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="2"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
         android:gravity="center_vertical"
         android:text="单元测试从零开始，包含Vue及React项目中该如何单测试"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="2"
+        android:text="本文取自笔者的开源项目 前端进阶之路有兴趣的可以理解一下，目前还在作业中。在这部分的内容中，你将学习到以下几点：单元测试"
         android:ellipsize="end"/>
 
     <LinearLayout

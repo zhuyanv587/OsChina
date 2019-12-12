@@ -14,12 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="2"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
         android:text="Mastercard joins Aussie digital ID market with Dakin and Australia Post partnerships"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="2"
+        android:text="Mastercard has chose Australia as the launch market for its digital identity platform,announcing two trials with Australia Post and Dakin University"
         android:ellipsize="end"/>
 
     <LinearLayout
