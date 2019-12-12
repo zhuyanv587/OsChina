@@ -1,4 +1,6 @@
 package net.yan.oschina.my.fragment;
 
-public class MyFragment extends androidx.fragment.app.Fragment {
+import androidx.fragment.app.Fragment;
+
+public class MyFragment extends Fragment {
 }

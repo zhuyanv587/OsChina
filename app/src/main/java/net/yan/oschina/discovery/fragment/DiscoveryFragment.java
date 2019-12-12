@@ -1,4 +1,6 @@
 package net.yan.oschina.discovery.fragment;
 
-public class DiscoveryFragment extends androidx.fragment.app.Fragment {
+import androidx.fragment.app.Fragment;
+
+public class DiscoveryFragment extends Fragment {
 }

@@ -1,31 +1,39 @@
 package net.yan.oschina;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.next.easynavigation.view.EasyNavigationBar;
 
 import net.yan.oschina.discovery.fragment.DiscoveryFragment;
 import net.yan.oschina.my.fragment.MyFragment;
 import net.yan.oschina.news.fragment.NewsFragment;
-import net.yan.oschina.tweet.fragment.Tweetragment;
+import net.yan.oschina.tweet.fragment.TweetFragment;
+import net.yan.oschina.view.MoreWindow;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.bar)
     EasyNavigationBar bar;
+
+    @BindView(R.id.id_container)
+    LinearLayout linearLayout;
+
+    private MoreWindow mMoreWindow;
+
     private String[] tabText = {"综合", "动弹", "发现", "我的"};
     //未选中icon
     private int[] normalIcon = {R.mipmap.ic_nav_news_normal, R.mipmap.ic_nav_tweet_normal, R.mipmap.ic_nav_discover_normal, R.mipmap.ic_nav_my_normal};
@@ -44,10 +52,12 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         fragments.add(new NewsFragment());
-        fragments.add(new Tweetragment());
+        fragments.add(new TweetFragment());
         fragments.add(new DiscoveryFragment());
         fragments.add(new MyFragment());
 
+        mMoreWindow = new MoreWindow(this);
+        mMoreWindow.init(linearLayout);
 
         View view = LayoutInflater.from(this).inflate(R.layout.custom_add_view, null);
 
@@ -79,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                         bar.getCustomAddView().animate().rotation(0).setDuration(400);
                                     }
                                     flag = !flag;
+                                    showMoreWindow();
                                 }
                             });
                         }
@@ -86,4 +97,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).build();
     }
+
+    private void showMoreWindow() {
+        if (null == mMoreWindow) {
+            mMoreWindow = new MoreWindow(this);
+            mMoreWindow.init(linearLayout);
+        }
+
+        mMoreWindow.showMoreWindow(linearLayout);
+    }
+
 }
