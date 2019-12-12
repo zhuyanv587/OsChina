@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
+    android:layout_height="wrap_content">
 
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
-   android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,38 +11,38 @@
         android:textSize="16dp"
         android:layout_gravity="center"
         android:textStyle="bold"
-        android:text="Mastercard joins Aussie digital ID market with Dakin and Australia Post partnerships"/>
-
+        android:gravity="center_vertical"
+        android:text="单元测试从零开始，包含Vue及React项目中该如何单测试"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="2"
-        android:text="Mastercard has chose Australia as the launch market for its digital identity platform,announcing two trials with Australia Post and Dakin University"
+        android:text="本文取自笔者的开源项目 前端进阶之路有兴趣的可以理解一下，目前还在作业中。在这部分的内容中，你将学习到以下几点：单元测试"
         android:ellipsize="end"/>
 
     <LinearLayout
+        android:layout_marginTop="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Asha Barbaschow"/>
+            android:text="伍道必有归身"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="昨天"/>
+            android:text="40分钟前" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end">
+            android:orientation="horizontal"
+            android:gravity="right">
 
             <ImageView
                 android:layout_width="20dp"
@@ -58,17 +52,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10"
-                android:layout_marginLeft="7dp"/>
+                android:text="23"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="95dp"
-        android:src="@mipmap/ic_launcher"/>
-
 </LinearLayout>
