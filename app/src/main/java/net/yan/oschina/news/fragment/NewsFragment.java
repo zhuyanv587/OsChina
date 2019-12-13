@@ -20,9 +20,9 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class NewsFragment extends Fragment {
-    @BindView(R.id.tl_1)
+    @BindView(R.id.viewPagerTab)
     SlidingTabLayout tab;
-    @BindView(R.id.vp)
+    @BindView(R.id.viewpager)
     ViewPager pager;
     private Unbinder binder;
 

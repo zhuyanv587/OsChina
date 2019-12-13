@@ -28,7 +28,7 @@ import butterknife.Unbinder;
 public class InformationFragment extends Fragment {
     private Unbinder binder;
 
-    @BindView(R.id.recyclerView)
+    @BindView(R.id.recyclerView_information)
     RecyclerView recyclerView;
 
     private List<Information> lists = new ArrayList<>();
