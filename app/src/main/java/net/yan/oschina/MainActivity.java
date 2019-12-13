@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }).build();
     }
 
+
     private void showMoreWindow() {
         if (null == mMoreWindow) {
             mMoreWindow = new MoreWindow(this);

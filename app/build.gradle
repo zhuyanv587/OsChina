@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "net.yan.oschina"
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -46,6 +46,7 @@ dependencies {
 
     //TabLayout
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
 
     //RecyclerView
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'

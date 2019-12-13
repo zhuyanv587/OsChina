@@ -10,12 +10,23 @@ import net.yan.oschina.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class SoftwareFragment extends Fragment {
+    private Unbinder binder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_software,container,false);
+        View view=inflater.inflate(R.layout.fragment_software,container,false);
+        binder= ButterKnife.bind(this,view);
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binder.unbind();
     }
 }
