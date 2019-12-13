@@ -1,10 +1,5 @@
 package net.yan.oschina.news.adapter;
 
-<<<<<<< Updated upstream
-import android.view.ViewGroup;
-
-=======
->>>>>>> Stashed changes
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -14,7 +9,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class BlogAdapter extends BaseQuickAdapter<Blog, BaseViewHolder> {
 
