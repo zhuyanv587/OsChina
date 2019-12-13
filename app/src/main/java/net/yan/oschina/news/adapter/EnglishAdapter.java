@@ -19,6 +19,7 @@ public class EnglishAdapter extends BaseQuickAdapter<English, BaseViewHolder> {
         super(layoutResId,data);
     }
 
+
     @Override
     protected void convert(@NonNull BaseViewHolder helper, English item) {
 
