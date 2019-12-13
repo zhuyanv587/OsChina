@@ -6,10 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
+import net.yan.oschina.entity.Blog;
+import net.yan.oschina.news.adapter.BlogAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -42,7 +50,7 @@ public class BlogFragment extends Fragment {
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
-//        blogAdapter = new BlogAdapter(R.layout.item_blog,lists);
+        blogAdapter = new BlogAdapter(R.layout.item_blog,lists);
         recyclerView.setAdapter(blogAdapter);
     }
 

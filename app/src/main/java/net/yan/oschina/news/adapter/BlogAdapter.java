@@ -1,10 +1,5 @@
 package net.yan.oschina.news.adapter;
 
-<<<<<<< Updated upstream
-import android.view.ViewGroup;
-
-=======
->>>>>>> Stashed changes
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
