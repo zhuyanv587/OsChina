@@ -9,7 +9,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class BlogAdapter extends BaseQuickAdapter<Blog, BaseViewHolder> {
 

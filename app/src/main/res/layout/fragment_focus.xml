@@ -4,39 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/bookmark"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:textColor="#BEBEBE"
-            android:gravity="center_horizontal"
-            android:text="登录后可查看关注的动态"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/primary"
-            android:background="@drawable/button_bg_style"
-            android:text="登录/注册"
-            android:layout_gravity="center_horizontal"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="你可能感兴趣的开源软件作者"
-        android:textStyle="bold"
-        android:textSize="18sp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_focus"
         android:layout_width="match_parent"

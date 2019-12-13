@@ -56,6 +56,9 @@ public class FocusFragment extends Fragment {
         focusAdapter=new FocusAdapter(R.layout.item_focus,lists);
         recyclerView_focus.setAdapter(focusAdapter);
 
+        View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_focus,null);
+        focusAdapter.setHeaderView(view1);
+
     }
 
     @Override
