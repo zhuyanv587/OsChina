@@ -6,15 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
+import net.yan.oschina.entity.Focus;
+import net.yan.oschina.news.adapter.FocusAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class FocusFragment extends Fragment {
     private Unbinder binder;
+    @BindView(R.id.recyclerView_focus)
+    RecyclerView recyclerView_focus;
+
+    private List<Focus> lists = new ArrayList<>();
+
+    private FocusAdapter focusAdapter;
+
+
+    public FocusFragment() {
+    }
 
     @Nullable
      @Override
@@ -23,6 +41,22 @@ public class FocusFragment extends Fragment {
          binder= ButterKnife.bind(this,view);
          return view;
      }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
+
+        Focus focus=new Focus();
+        for (int i=0;i<9;i++){
+            lists.add(focus);
+        }
+        RecyclerView.LayoutManager manager= new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+        recyclerView_focus.setLayoutManager(manager);
+        focusAdapter=new FocusAdapter(R.layout.item_focus,lists);
+        recyclerView_focus.setAdapter(focusAdapter);
+
+    }
 
     @Override
     public void onDestroyView() {
