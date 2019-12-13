@@ -80,7 +80,7 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
         bgView = layout.findViewById(R.id.rel);
         setOutsideTouchable(true);
         setFocusable(true);
-        setClippingEnabled(false);//使popupwindow全屏显示
+        setClippingEnabled(true);//使popupwindow全屏显示
     }
 
     public int getNavigationBarHeight(Activity activity) {
@@ -219,7 +219,7 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
         }
 
         switch (v.getId()) {
-            case R.id.tv_sbs:
+            case R.id.lin:
                 break;
             case R.id.tv_search:
                 break;

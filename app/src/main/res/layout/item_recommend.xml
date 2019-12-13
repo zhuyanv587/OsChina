@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/recommend_title"
@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:lines="2"
         android:text="本文取自笔者的开源项目 前端进阶之路有兴趣的可以理解一下，目前还在作业中。在这部分的内容中，你将学习到以下几点：单元测试"
-        android:ellipsize="end"/>
+        android:ellipsize="end"
+        android:padding="5dp"/>
 
     <LinearLayout
         android:layout_marginTop="4dp"
@@ -33,21 +34,24 @@
             android:id="@+id/recommend_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="伍道必有归身"/>
+            android:text="伍道必有归身"
+            android:paddingBottom="5dp"/>
 
         <TextView
             android:id="@+id/recommend_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="40分钟前" />
+            android:text="40分钟前"
+            android:paddingBottom="5dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:gravity="right">
+            android:gravity="right"
+            android:paddingBottom="5dp">
 
             <ImageView
                 android:layout_width="20dp"
