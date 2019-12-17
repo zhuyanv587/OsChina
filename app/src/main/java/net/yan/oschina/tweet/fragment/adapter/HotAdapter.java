@@ -16,6 +16,7 @@ public class HotAdapter extends BaseQuickAdapter<Hot, BaseViewHolder> {
         super(layoutResId, data);
     }
 
+
     @Override
     protected void convert(@NonNull BaseViewHolder helper, Hot item) {
 
