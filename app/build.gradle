@@ -47,7 +47,6 @@ dependencies {
     //TabLayout
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 
-
     //RecyclerView
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
@@ -58,4 +57,9 @@ dependencies {
 //    //图片加载器
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+
+    //Oath2认证
+    implementation 'me.zhyd.oauth:JustAuth:1.13.1'
+    //网络请求库
+    implementation 'com.zhousf.lib:okhttp3:2.9.9'
 }

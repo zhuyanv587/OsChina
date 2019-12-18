@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
-import net.yan.oschina.entity.Software;
+import net.yan.oschina.news.entity.Software;
 import net.yan.oschina.news.adapter.SoftwareAdapter;
 
 import java.util.ArrayList;

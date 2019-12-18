@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
-import net.yan.oschina.entity.Information;
-import net.yan.oschina.entity.Recommend;
-import net.yan.oschina.news.adapter.InformationAdapter;
+import net.yan.oschina.news.entity.Recommend;
 import net.yan.oschina.news.adapter.RecommendAdapter;
 
 import java.util.ArrayList;

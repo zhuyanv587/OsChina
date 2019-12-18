@@ -3,7 +3,7 @@ package net.yan.oschina.news.adapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
-import net.yan.oschina.entity.Question;
+import net.yan.oschina.news.entity.Question;
 
 import java.util.List;
 

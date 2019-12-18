@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
-import net.yan.oschina.entity.Blog;
+import net.yan.oschina.news.entity.Blog;
 import net.yan.oschina.news.adapter.BlogAdapter;
 
 import java.util.ArrayList;

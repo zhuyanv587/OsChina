@@ -6,13 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.okhttplib.HttpInfo;
+import com.okhttplib.OkHttpUtil;
+import com.okhttplib.callback.Callback;
 import com.youth.banner.Banner;
 
 import net.yan.oschina.R;
-import net.yan.oschina.entity.Information;
+import net.yan.oschina.net.URLList;
+import net.yan.oschina.news.entity.Information;
 import net.yan.oschina.news.adapter.InformationAdapter;
+import net.yan.oschina.net.InformationResult;
+import net.yan.oschina.util.ACache;
 import net.yan.oschina.util.GlideImageLoader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,12 +58,20 @@ public class InformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO 假数据，后续修改为网络请求*******
-        Information information = new Information();
-        for (int i = 0;i<30;i++){
-            lists.add(information);
-        }
-        //***********************************
+        OkHttpUtil.getDefault(this)
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_INFORMATION + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                    @Override
+                    public void onSuccess(HttpInfo info) throws IOException {
+                        InformationResult result = info.getRetDetail(InformationResult.class);
+                        mInformationAdapter.replaceData(result.getNewsList());
+
+                    }
+
+                    @Override
+                    public void onFailure(HttpInfo info) throws IOException {
+                        System.out.println(info);
+                    }
+                });
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
         mInformationAdapter = new InformationAdapter(R.layout.item_information,lists);

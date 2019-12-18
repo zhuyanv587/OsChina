@@ -1,4 +1,4 @@
-package net.yan.oschina.entity;
+package net.yan.oschina.news.entity;
 
 public class Focus {
     private int img;
