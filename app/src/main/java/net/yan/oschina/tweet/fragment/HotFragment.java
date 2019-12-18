@@ -6,12 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
-import net.yan.oschina.entity.English;
-import net.yan.oschina.entity.Hot;
-import net.yan.oschina.entity.Lastest;
-import net.yan.oschina.news.adapter.EnglishAdapter;
+import net.yan.oschina.tweet.fragment.entity.Hot;
 import net.yan.oschina.tweet.fragment.adapter.HotAdapter;
-import net.yan.oschina.tweet.fragment.adapter.LastestAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
