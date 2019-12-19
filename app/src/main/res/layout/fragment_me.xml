@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:NetView="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -16,10 +17,10 @@
 
             <ImageView
                 android:id="@+id/my_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_margin="7dp"
-                android:src="@mipmap/hair"/>
+                android:src="@mipmap/head"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,18 +32,18 @@
 
             <ImageView
                 android:id="@+id/my_set"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/set"
+                android:src="@mipmap/set_pic"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="120dp"/>
+                android:layout_marginLeft="100dp"/>
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:src="@mipmap/qr"/>
+                android:src="@mipmap/scan_pic"/>
 
         </LinearLayout>
 
