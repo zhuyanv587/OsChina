@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@mipmap/bookmark"/>
@@ -22,6 +23,7 @@
             android:text="登录后可查看关注的动态"/>
 
         <Button
+            android:id="@+id/log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
