@@ -12,6 +12,7 @@ import net.yan.oschina.my.NetView.netView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -20,9 +21,15 @@ public class MyFragment extends Fragment {
     private double[] percent = {1, 0.4, 0.6, 0.5, 0.8, 0.3};
 
     @BindView(R.id.my_title)
-    ImageView message;
+    ImageView head;
+    @BindView(R.id.my_set)
+    ImageView set;
+    @BindView(R.id.my_scan)
+    ImageView scan;
     @BindView(R.id.netView)
     netView netView;
+    @BindView(R.id.myList)
+    RecyclerView myRecycler;
 
     @Nullable
     @Override

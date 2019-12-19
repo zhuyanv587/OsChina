@@ -39,6 +39,7 @@
                 android:layout_marginLeft="100dp"/>
 
             <ImageView
+                android:id="@+id/my_scan"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
