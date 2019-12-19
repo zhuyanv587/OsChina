@@ -70,6 +70,10 @@ public class BlogFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         blogAdapter = new BlogAdapter(R.layout.item_blog,lists);
         recyclerView.setAdapter(blogAdapter);
+
+        View view1 = View.inflate(getActivity(),R.layout.blog_picture,null);
+        blogAdapter.addHeaderView(view1);
+
     }
 
     @Override
