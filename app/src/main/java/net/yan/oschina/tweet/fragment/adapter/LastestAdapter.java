@@ -3,7 +3,7 @@ package net.yan.oschina.tweet.fragment.adapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
-import net.yan.oschina.entity.Lastest;
+import net.yan.oschina.tweet.entity.Lastest;
 
 import java.util.List;
 

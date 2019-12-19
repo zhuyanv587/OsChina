@@ -21,7 +21,7 @@ public class InformationAdapter extends BaseQuickAdapter<Information, BaseViewHo
     protected void convert(@NonNull BaseViewHolder helper, Information item) {
         helper.setText(R.id.text1,item.getTitle());
         helper.setText(R.id.text4,item.getAuthor());
-        helper.setText(R.id.text5,item.getPubDate());
+        helper.setText(R.id.text5,item  .getPubDate());
         helper.setText(R.id.text6,item.getCommentCount()+"");
     }
 }

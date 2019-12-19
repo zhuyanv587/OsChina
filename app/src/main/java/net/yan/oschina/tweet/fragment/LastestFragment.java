@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
-import net.yan.oschina.entity.Lastest;
+import net.yan.oschina.tweet.entity.Lastest;
 import net.yan.oschina.tweet.fragment.adapter.LastestAdapter;
 
 import java.util.ArrayList;
