@@ -5,10 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.yan.oschina.R;
-import net.yan.oschina.news.entity.Blog;
-import net.yan.oschina.news.adapter.BlogAdapter;
+import com.okhttplib.HttpInfo;
+import com.okhttplib.OkHttpUtil;
+import com.okhttplib.callback.Callback;
 
+import net.yan.oschina.R;
+import net.yan.oschina.net.BlogResult;
+import net.yan.oschina.net.URLList;
+import net.yan.oschina.news.adapter.BlogAdapter;
+import net.yan.oschina.news.entity.Blog;
+import net.yan.oschina.util.ACache;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +51,20 @@ public class BlogFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Blog blog = new Blog();
-        for (int i=0;i<30;i++){
-            lists.add(blog);
-        }
+        OkHttpUtil.getDefault(this)
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_BLOG + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                    @Override
+                    public void onSuccess(HttpInfo info) throws IOException {
+                        BlogResult result = info.getRetDetail(BlogResult.class);
+                        blogAdapter.replaceData(result.getBloglist());
+
+                    }
+
+                    @Override
+                    public void onFailure(HttpInfo info) throws IOException {
+                        System.out.println(info);
+                    }
+                });
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
