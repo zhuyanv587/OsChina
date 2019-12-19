@@ -1,6 +1,5 @@
 package net.yan.oschina.news.adapter;
 
-import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;

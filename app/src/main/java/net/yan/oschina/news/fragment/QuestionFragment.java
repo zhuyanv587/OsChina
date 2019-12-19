@@ -1,6 +1,7 @@
 package net.yan.oschina.news.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,10 @@ import com.okhttplib.OkHttpUtil;
 import com.okhttplib.callback.Callback;
 
 import net.yan.oschina.R;
-import net.yan.oschina.net.BlogResult;
 import net.yan.oschina.net.QuestionResult;
 import net.yan.oschina.net.URLList;
-import net.yan.oschina.news.entity.Question;
 import net.yan.oschina.news.adapter.QuestionAdapter;
+import net.yan.oschina.news.entity.Question;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
@@ -50,6 +50,7 @@ public class QuestionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.i("result", "onViewCreated: "+URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token"));
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
                     @Override

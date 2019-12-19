@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="310dp"
         android:text="全部"/>
+
 </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

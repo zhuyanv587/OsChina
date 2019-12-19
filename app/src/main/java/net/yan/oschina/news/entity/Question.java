@@ -2,22 +2,21 @@ package net.yan.oschina.news.entity;
 
 public class Question {
 
-    private long id;
+    private long answerCount;
     private String author;
-    private String pubDate;
+    private long id;
+    private long viewCount;
     private String title;
-    private int answerCount;
-    private long authorid;
-    private String answer;
     private String portrait;
-    private int viewCount;
+    private long authorid;
+    private String pubDate;
 
-    public void setId(long id) {
-        this.id = id;
+    public void setAnswerCount(int answerCount) {
+        this.answerCount = answerCount;
     }
 
-    public long getId() {
-        return id;
+    public long getAnswerCount() {
+        return answerCount;
     }
 
     public void setAuthor(String author) {
@@ -28,12 +27,20 @@ public class Question {
         return author;
     }
 
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getPubDate() {
-        return pubDate;
+    public long getId() {
+        return id;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public long getViewCount() {
+        return viewCount;
     }
 
     public void setTitle(String title) {
@@ -44,12 +51,12 @@ public class Question {
         return title;
     }
 
-    public void setAnswerCount(int answerCount) {
-        this.answerCount = answerCount;
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 
-    public int getAnswerCount() {
-        return answerCount;
+    public String getPortrait() {
+        return portrait;
     }
 
     public void setAuthorid(long authorid) {
@@ -60,27 +67,11 @@ public class Question {
         return authorid;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setPortrait(String portrait) {
-        this.portrait = portrait;
-    }
-
-    public String getPortrait() {
-        return portrait;
-    }
-
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
-    }
-
-    public int getViewCount() {
-        return viewCount;
+    public String getPubDate() {
+        return pubDate;
     }
 }
