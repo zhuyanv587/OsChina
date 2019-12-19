@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -42,70 +43,84 @@ public class LoginAccessUtil {
     public static void login(Activity activity, OauthClient client) {
         Log.e("aaa","login: " +client.toString());
 
-        new Thread(() -> {
-            // 创建授权request
-            AuthOschinaRequest authRequest =
-                    new AuthOschinaRequest(AuthConfig.builder().clientId(client.getClientId())
-                                                   .clientSecret(client.getClientSecret())
-                                                   .redirectUri(client.getRedirectUrl())
-                                                   .build());
-            // 生成授权页面
-            String url1 = authRequest.authorize();
-            activity.runOnUiThread(() -> {
-                WebView myWebView = new WebView(activity);
-                myWebView.setWebViewClient(new WebViewClient() {
-                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 创建授权request
+                AuthOschinaRequest authRequest =
+                        new AuthOschinaRequest(AuthConfig.builder().clientId(client.getClientId())
+                                .clientSecret(client.getClientSecret())
+                                .redirectUri(client.getRedirectUrl())
+                                .build());
+                // 生成授权页面
+                String url1 = authRequest.authorize();
+                activity.runOnUiThread(new Runnable() {
                     @Override
-                    public void onPageFinished(WebView view, String url) {
-                        myWebView.evaluateJavascript("javascript:if(document" +
-                                                             ".getElementById" +
-                                                             "('f_email') != " +
-                                                             "null){" +
-                                                             "document" +
-                                                             ".getElementById" +
-                                                             "('f_email')" +
-                                                             ".value= '" + client.getUsername() + "';" +
-                                                             "document" +
-                                                             ".getElementById" +
-                                                             "('f_pwd')" +
-                                                             ".value= '" + client.getPassword() + "';" +
-                                                             "}" +
-                                                             "document" +
-                                                             ".getElementsByName('authorize')[0].click();", value -> {
+                    public void run() {
+                        WebView myWebView = new WebView(activity);
+                        activity.setContentView(myWebView);
+                        myWebView.setWebViewClient(new WebViewClient() {
+                            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                            @Override
+                            public void onPageFinished(WebView view, String url) {
+                                myWebView.evaluateJavascript("javascript:if(document" +
+                                        ".getElementById" +
+                                        "('f_email') != " +
+                                        "null){" +
+                                        "document" +
+                                        ".getElementById" +
+                                        "('f_email')" +
+                                        ".value= '" + client.getUsername() + "';" +
+                                        "document" +
+                                        ".getElementById" +
+                                        "('f_pwd')" +
+                                        ".value= '" + client.getPassword() + "';" +
+                                        "}" +
+                                        "document" +
+                                        ".getElementsByName('authorize')[0].click();", new ValueCallback<String>() {
+                                    @Override
+                                    public void onReceiveValue(String value) {
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public boolean shouldOverrideUrlLoading(WebView view,
+                                                                    String url) {
+                                //监听url的变化，通过比较是否包含回调地址确定是否是包含code的url
+                                if (url.contains(client.getRedirectUrl())) {
+                                    code = Uri.parse(url).getQueryParameter("code");
+                                    state = Uri.parse(url).getQueryParameter("state");
+                                    // 构造AuthCallback请求参数，填入code和state
+                                    AuthCallback callback = new AuthCallback();
+                                    callback.setCode(code);
+                                    callback.setState(state);
+                                    // 开启多线程登录
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // 通过login方法登录，获得token和用户信息
+                                            AuthResponse<AuthUser> response = authRequest.login(callback);
+                                            AuthUser user = response.getData();
+
+                                            String userString = JSON.toJSON(user).toString();
+                                            ((CallBackForUser) activity).getUserMsg(userString);
+                                        }
+                                    }).start();
+                                }
+                                return false;
+                            }
                         });
-                    }
 
-                    @Override
-                    public boolean shouldOverrideUrlLoading(WebView view,
-                                                            String url) {
-                        //监听url的变化，通过比较是否包含回调地址确定是否是包含code的url
-                        if (url.contains(client.getRedirectUrl())) {
-                            code = Uri.parse(url).getQueryParameter("code");
-                            state = Uri.parse(url).getQueryParameter("state");
-                            // 构造AuthCallback请求参数，填入code和state
-                            AuthCallback callback = new AuthCallback();
-                            callback.setCode(code);
-                            callback.setState(state);
-                            // 开启多线程登录
-                            new Thread(() -> {
-                                // 通过login方法登录，获得token和用户信息
-                                AuthResponse<AuthUser> response = authRequest.login(callback);
-                                AuthUser user = response.getData();
-
-                                String userString = JSON.toJSON(user).toString();
-                                ((CallBackForUser) activity).getUserMsg(userString);
-                            }).start();
-                        }
-                        return false;
+                        // WebView的设置参数类
+                        WebSettings webSettings = myWebView.getSettings();
+                        // 让WebView能够执行javaScript
+                        webSettings.setJavaScriptEnabled(true);
+                        myWebView.loadUrl(url1);
                     }
                 });
-
-                // WebView的设置参数类
-                WebSettings webSettings = myWebView.getSettings();
-                // 让WebView能够执行javaScript
-                webSettings.setJavaScriptEnabled(true);
-                myWebView.loadUrl(url1);
-            });
+            }
         }).start();
     }
 }
