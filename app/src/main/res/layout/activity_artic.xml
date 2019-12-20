@@ -5,15 +5,16 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/artic_black"
+
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/artic_black"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/twone"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"/>
 

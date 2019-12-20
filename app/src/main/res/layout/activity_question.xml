@@ -13,7 +13,7 @@
             android:id="@+id/tweet_img1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/twone"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"/>
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="25dp"
             android:layout_marginLeft="99dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/qutwoo"/>
     </LinearLayout>
 
     <View
@@ -72,14 +72,14 @@
             android:id="@+id/question_img2"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/quone"
             android:layout_marginLeft="33dp"/>
 
         <ImageView
             android:id="@+id/question_img3"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/qutwo"
             android:layout_marginLeft="32dp" />
 
         <ImageView
@@ -87,28 +87,28 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="32dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/quthree" />
 
         <ImageView
             android:id="@+id/question_img5"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="32dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/qusen" />
 
         <ImageView
             android:id="@+id/question_img6"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="32dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/qufive" />
 
         <ImageView
             android:id="@+id/question_img7"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="32dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/qusix" />
     </LinearLayout>
 
 </LinearLayout>
