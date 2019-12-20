@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/foucs2_img1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp">
+
+            <TextView
+                android:id="@+id/foucs2_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="性感码农"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foucs2_time1"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:text="昨天 20:35"/>
+                <TextView
+                    android:id="@+id/foucs2_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Android"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/foucs2_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="7dp"
+        android:textColor="#000"
+        android:text="香梅：@mowzh 有房有车，礼金25万，他妈的结个婚，让这个老女人直接飞起来，不用奋斗了，挣一百多万？？你想没想过，做个男人吧！"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="7dp"
+        android:background="#E3E3E3">
+
+        <TextView
+            android:id="@+id/foucs2_text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:textColor="#000"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:text="相亲认识的一个妹子，湖北人。见面前互相发了照片，我个人情况，目前月薪税前32k，29岁，坐标上海。女方月薪11k，也是29岁"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="7dp">
+
+        <TextView
+            android:id="@+id/foucs2_time2"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="昨天 17:23"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right|center_vertical">
+            <TextView
+                android:id="@+id/foucs2_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="37"/>
+            <ImageView
+                android:id="@+id/foucs2_img2"
+                android:layout_marginLeft="6dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_launcher"/>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#828282"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+
+</LinearLayout>
