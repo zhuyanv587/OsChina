@@ -77,7 +77,7 @@
                 android:id="@+id/image3"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/pl"/>
 
             <TextView
                 android:id="@+id/text6"

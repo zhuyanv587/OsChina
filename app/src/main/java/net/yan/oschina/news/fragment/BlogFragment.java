@@ -72,7 +72,9 @@ public class BlogFragment extends Fragment {
         recyclerView.setAdapter(blogAdapter);
 
         View view1 = View.inflate(getActivity(),R.layout.blog_picture,null);
+        View view2 = View.inflate(getActivity(),R.layout.blog_picture2,null);
         blogAdapter.addHeaderView(view1);
+        blogAdapter.addHeaderView(view2);
 
     }
 

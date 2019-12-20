@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/question_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@mipmap/ic_nav_my_pressed" />
 
         <LinearLayout
@@ -71,7 +71,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/pl" />
 
                     <TextView
                         android:id="@+id/question_num"

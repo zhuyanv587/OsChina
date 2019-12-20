@@ -53,6 +53,7 @@ public class SoftwareFragment extends Fragment {
         recyclerView.setAdapter(softwareAdapter);
         View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_software,null);
         softwareAdapter.setHeaderView(view1);
+
     }
 
     @Override

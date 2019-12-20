@@ -51,10 +51,10 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-    //XBanner广告轮播图
+    //banner轮播框架 广告轮播图
     implementation 'com.youth.banner:banner:1.4.10'
-//
-//    //图片加载器
+
+    //Glide图片加载器
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
 

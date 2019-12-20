@@ -50,7 +50,7 @@ public class HotFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         OkHttpUtil.getDefault(this)
-                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_LATEST + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_HOT + ACache.get(getActivity()).getAsString("token")+"&user=-1").build(), new Callback() {
                     @Override
                     public void onSuccess(HttpInfo info) throws IOException {
                         HotResult result = info.getRetDetail(HotResult.class);
