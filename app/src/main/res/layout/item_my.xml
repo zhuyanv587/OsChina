@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/my_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="8dp"
             android:src="@mipmap/message"/>
         <LinearLayout
@@ -16,18 +17,20 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
             <TextView
+                android:id="@+id/my_intro"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的消息"
                 android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="22sp"/>
             <View
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#888989"/>
         </LinearLayout>
         <ImageView
+            android:id="@+id/my_bracket"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
