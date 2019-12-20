@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-
 import com.bumptech.glide.Glide;
 import com.okhttplib.HttpInfo;
 import com.okhttplib.OkHttpUtil;
@@ -18,12 +17,11 @@ import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
 
 import net.yan.oschina.R;
-import net.yan.oschina.net.URLList;
-import net.yan.oschina.news.entity.Information;
-import net.yan.oschina.news.adapter.InformationAdapter;
 import net.yan.oschina.net.InformationResult;
+import net.yan.oschina.net.URLList;
+import net.yan.oschina.news.adapter.InformationAdapter;
+import net.yan.oschina.news.entity.Information;
 import net.yan.oschina.util.ACache;
-import net.yan.oschina.util.GlideImageLoader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,8 +52,8 @@ public class InformationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_information,container,false);
-        binder= ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_information, container, false);
+        binder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -76,13 +74,13 @@ public class InformationFragment extends Fragment {
                         System.out.println(info);
                     }
                 });
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
-        mInformationAdapter = new InformationAdapter(R.layout.item_information,lists);
+        mInformationAdapter = new InformationAdapter(R.layout.item_information, lists);
         recyclerView.setAdapter(mInformationAdapter);
 
         //处理Header
-        View view1 = View.inflate(getActivity(),R.layout.xbanner,null);
+        View view1 = View.inflate(getActivity(), R.layout.xbanner, null);
         mInformationAdapter.addHeaderView(view1);
 
         Banner banner = view1.findViewById(R.id.banner);
