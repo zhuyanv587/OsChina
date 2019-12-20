@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements CallBackForUser,
         client.setPassword(login_password.getText().toString());
 
         LoginAccessUtil.login(this,client);
+        finish();
     }
 
     @Override

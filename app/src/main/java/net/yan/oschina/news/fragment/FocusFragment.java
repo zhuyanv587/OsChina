@@ -50,10 +50,7 @@ public class FocusFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
-
-
         Focus focus=new Focus();
         for (int i=0;i<9;i++){
             lists.add(focus);
@@ -67,9 +64,6 @@ public class FocusFragment extends Fragment implements View.OnClickListener {
         log = view1.findViewById(R.id.log);
         log.setOnClickListener(this);
         focusAdapter.setHeaderView(view1);
-
-
-
     }
 
     @Override

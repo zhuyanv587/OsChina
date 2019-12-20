@@ -42,7 +42,7 @@ public class TweetFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFragment.add(new LastestFragment());
+        mFragment.add(new LatestFragment());
         mFragment.add(new HotFragment());
         mFragment.add(new SubjectFragment());
         mFragment.add(new  ThrumFragment());
