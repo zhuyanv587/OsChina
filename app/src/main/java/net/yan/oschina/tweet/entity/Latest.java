@@ -1,6 +1,7 @@
 package net.yan.oschina.tweet.entity;
 
-public class Hot {
+public class Latest {
+
     private long id;
     private String pubDate;
     private String body;

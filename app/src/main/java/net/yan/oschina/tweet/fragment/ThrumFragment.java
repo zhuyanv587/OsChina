@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import net.yan.oschina.R;
 import net.yan.oschina.tweet.entity.Thrum;
-import net.yan.oschina.tweet.fragment.adapter.ThrumAdapter;
+import net.yan.oschina.tweet.adapter.ThrumAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

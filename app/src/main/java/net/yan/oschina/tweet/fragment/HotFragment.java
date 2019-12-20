@@ -5,10 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.yan.oschina.R;
-import net.yan.oschina.tweet.entity.Hot;
-import net.yan.oschina.tweet.fragment.adapter.HotAdapter;
+import com.okhttplib.HttpInfo;
+import com.okhttplib.OkHttpUtil;
+import com.okhttplib.callback.Callback;
 
+import net.yan.oschina.R;
+import net.yan.oschina.net.HotResult;
+import net.yan.oschina.net.LatestResult;
+import net.yan.oschina.net.URLList;
+import net.yan.oschina.tweet.entity.Hot;
+import net.yan.oschina.tweet.adapter.HotAdapter;
+import net.yan.oschina.util.ACache;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +49,20 @@ public class HotFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Hot hot=new Hot();
-        for(int i=0;i<30;i++){
-            list.add(hot);
-        }
+        OkHttpUtil.getDefault(this)
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_LATEST + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                    @Override
+                    public void onSuccess(HttpInfo info) throws IOException {
+                        HotResult result = info.getRetDetail(HotResult.class);
+                        hotAdapter.replaceData(result.getTweetlist());
 
+                    }
+
+                    @Override
+                    public void onFailure(HttpInfo info) throws IOException {
+                        System.out.println(info);
+                    }
+                });
 
         RecyclerView.LayoutManager manager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);

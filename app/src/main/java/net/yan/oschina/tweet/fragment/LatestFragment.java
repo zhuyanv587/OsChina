@@ -5,10 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.yan.oschina.R;
-import net.yan.oschina.tweet.entity.Lastest;
-import net.yan.oschina.tweet.fragment.adapter.LastestAdapter;
+import com.okhttplib.HttpInfo;
+import com.okhttplib.OkHttpUtil;
+import com.okhttplib.callback.Callback;
 
+import net.yan.oschina.R;
+import net.yan.oschina.net.InformationResult;
+import net.yan.oschina.net.LatestResult;
+import net.yan.oschina.net.URLList;
+import net.yan.oschina.tweet.adapter.LatestAdapter;
+import net.yan.oschina.tweet.entity.Latest;
+import net.yan.oschina.util.ACache;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +30,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class LastestFragment extends Fragment {
+public class LatestFragment extends Fragment {
 
     private Unbinder unbinder;
-    private LastestAdapter lastestAdapter;
-    private List<Lastest> list=new ArrayList<>();
+    private LatestAdapter latestAdapter;
+    private List<Latest> list=new ArrayList<>();
 
     @BindView(R.id.recyclerView_lastest)
 
@@ -41,16 +50,24 @@ public class LastestFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Lastest lastest=new Lastest();
-        for(int i=0;i<30;i++){
-            list.add(lastest);
-        }
+        OkHttpUtil.getDefault(this)
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_LATEST + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                    @Override
+                    public void onSuccess(HttpInfo info) throws IOException {
+                        LatestResult result = info.getRetDetail(LatestResult.class);
+                        latestAdapter.replaceData(result.getTweetlist());
 
+                    }
 
+                    @Override
+                    public void onFailure(HttpInfo info) throws IOException {
+                        System.out.println(info);
+                    }
+                });
         RecyclerView.LayoutManager manager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
-        lastestAdapter=new LastestAdapter(R.layout.item_lastest,list);
-        recyclerView.setAdapter(lastestAdapter);
+        latestAdapter=new LatestAdapter(R.layout.item_latest,list);
+        recyclerView.setAdapter(latestAdapter);
 
     }
 

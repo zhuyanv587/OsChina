@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.yan.oschina.R;
-import net.yan.oschina.tweet.fragment.entity.Subject;
-import net.yan.oschina.tweet.fragment.adapter.SubjectAdapter;
+import net.yan.oschina.tweet.adapter.SubjectAdapter;
+import net.yan.oschina.tweet.entity.Subject;
 
 import java.util.ArrayList;
 import java.util.List;

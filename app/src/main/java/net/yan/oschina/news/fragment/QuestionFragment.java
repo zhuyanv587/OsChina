@@ -57,7 +57,6 @@ public class QuestionFragment extends Fragment {
                     public void onSuccess(HttpInfo info) throws IOException {
                         QuestionResult result = info.getRetDetail(QuestionResult.class);
                         questionAdapter.replaceData(result.getPost_list());
-
                     }
 
                     @Override

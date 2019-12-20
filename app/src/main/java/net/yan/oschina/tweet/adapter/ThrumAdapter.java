@@ -1,4 +1,4 @@
-package net.yan.oschina.tweet.fragment.adapter;
+package net.yan.oschina.tweet.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
