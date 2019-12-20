@@ -1,5 +1,6 @@
 package net.yan.oschina.my.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,29 +17,44 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<My> mList;
+    private Context context;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        View myView;
         //用于子项中图片控件的缓存
         ImageView MyImage;
         TextView MyIntro;
         ImageView Bracket;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            myView=itemView;
             MyImage=itemView.findViewById(R.id.my_image);
             MyIntro=itemView.findViewById(R.id.my_intro);
             Bracket=itemView.findViewById(R.id.my_bracket);
         }
     }
 
-    public MyAdapter(List<My> myList){
-        mList=myList;
+    //声明自定义的接口
+    OnItemClickListener listener;
 
+    //点击事件的步骤,自定义一个回调接口来实现click事件
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position,String data);
+    }
+    //定义方法并暴露给外面的调用者
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public MyAdapter(List<My> myList) {
+        this.mList = myList;
     }
 
     //onCreatViewHolder():创建并返回ViewHolder的实例，并且参数是动态加载的子项布局
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context=parent.getContext();
         //动态加载布局
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my,parent,false);
         //创建ViewHolder实例，参数为刚加载进来的子项布局
@@ -60,12 +76,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.MyImage.setImageResource(my.getImage());
         holder.MyIntro.setText(my.getIntro());
         holder.Bracket.setImageResource(my.getBracket());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener!=null){
+                    listener.onItemClick(v,position,mList.get(position).getIntro());
+                }
+            }
+        });
     }
-
     @Override
     public int getItemCount() {
         return mList.size();
     }
-
-
 }

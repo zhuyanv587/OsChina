@@ -5,8 +5,6 @@ public class My {
     private String intro;
     private int bracket;
 
-
-
     public My(int image, String intro,int bracket) {
         this.image = image;
         this.intro = intro;
