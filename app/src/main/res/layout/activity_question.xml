@@ -43,7 +43,7 @@
         android:id="@+id/edit_question"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="问答标题"
+        android:hint="问答标题"
         android:textColor="#DBDBDB"
         android:textSize="25dp"
         android:textStyle="bold" />

@@ -47,7 +47,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="你今天想要动弹什么？"
+            android:hint="你今天想要动弹什么？"
             android:gravity="start"/>
     </LinearLayout>
 
