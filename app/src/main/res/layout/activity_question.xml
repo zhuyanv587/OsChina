@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:id="@+id/tweet_img1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/twone"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="发布问答"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="30dp"/>
+
+        <ImageView
+            android:id="@+id/question_img1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="99dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/qutwoo"/>
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#888989"/>
+
+    <EditText
+        android:id="@+id/edit_question"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="问答标题"
+        android:textColor="#DBDBDB"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
+
+        <View
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#888989"
+        android:layout_marginBottom="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/question_img2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/quone"
+            android:layout_marginLeft="33dp"/>
+
+        <ImageView
+            android:id="@+id/question_img3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/qutwo"
+            android:layout_marginLeft="32dp" />
+
+        <ImageView
+            android:id="@+id/question_img4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="32dp"
+            android:src="@mipmap/quthree" />
+
+        <ImageView
+            android:id="@+id/question_img5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="32dp"
+            android:src="@mipmap/qusen" />
+
+        <ImageView
+            android:id="@+id/question_img6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="32dp"
+            android:src="@mipmap/qufive" />
+
+        <ImageView
+            android:id="@+id/question_img7"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="32dp"
+            android:src="@mipmap/qusix" />
+    </LinearLayout>
+
+</LinearLayout>

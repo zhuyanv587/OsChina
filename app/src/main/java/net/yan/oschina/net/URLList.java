@@ -7,5 +7,7 @@ public class URLList {
     public final static String GET_BLOG = domain + "/action/openapi/blog_list?access_token=";
     public final static String GET_QUESTION = domain + "/action/openapi/post_list?access_token=";
     public final static String GET_LATEST = domain + "/action/openapi/tweet_list?access_token=";
+    public final static String GET_HOT = domain + "/action/openapi/tweet_list?access_token=";
+    public final static String GET_SOFTWARE = domain + "/action/openapi/project_tag_list?access_token=";
 
 }

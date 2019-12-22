@@ -5,10 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.okhttplib.HttpInfo;
+import com.okhttplib.OkHttpUtil;
+import com.okhttplib.callback.Callback;
+
 import net.yan.oschina.R;
+import net.yan.oschina.net.RecommendResult;
+import net.yan.oschina.net.SoftwareResult;
+import net.yan.oschina.net.URLList;
 import net.yan.oschina.news.entity.Software;
 import net.yan.oschina.news.adapter.SoftwareAdapter;
+import net.yan.oschina.util.ACache;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +51,20 @@ public class SoftwareFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Software software = new Software();
-        for (int i=0;i<30;i++){
-            lists.add(software);
-        }
+        OkHttpUtil.getDefault(this)
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_SOFTWARE + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                    @Override
+                    public void onSuccess(HttpInfo info) throws IOException {
+                        SoftwareResult result = info.getRetDetail(SoftwareResult.class);
+                        softwareAdapter.replaceData(result.getProjectlist());
+
+                    }
+
+                    @Override
+                    public void onFailure(HttpInfo info) throws IOException {
+                        System.out.println(info);
+                    }
+                });
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
@@ -53,6 +72,7 @@ public class SoftwareFragment extends Fragment {
         recyclerView.setAdapter(softwareAdapter);
         View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_software,null);
         softwareAdapter.setHeaderView(view1);
+
     }
 
     @Override
