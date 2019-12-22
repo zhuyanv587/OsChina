@@ -16,18 +16,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    //数据源
     private List<My> mList;
-    private Context context;
+    private Context mContext;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        View myView;
         //用于子项中图片控件的缓存
         ImageView MyImage;
         TextView MyIntro;
         ImageView Bracket;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            myView=itemView;
             MyImage=itemView.findViewById(R.id.my_image);
             MyIntro=itemView.findViewById(R.id.my_intro);
             Bracket=itemView.findViewById(R.id.my_bracket);
@@ -39,14 +38,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     //点击事件的步骤,自定义一个回调接口来实现click事件
     public interface OnItemClickListener{
-        void onItemClick(View view,int position,String data);
+        //view和位置
+        void onItemClick(View view,int position);
     }
     //定义方法并暴露给外面的调用者
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public MyAdapter(List<My> myList) {
+    public MyAdapter( Context mContext,List<My> myList) {
+        //上下文
+        this.mContext=mContext;
+        //实体类数据
         this.mList = myList;
     }
 
@@ -54,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context=parent.getContext();
+        mContext=parent.getContext();
         //动态加载布局
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my,parent,false);
         //创建ViewHolder实例，参数为刚加载进来的子项布局
@@ -64,6 +67,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         parent.getWidth();
         ViewGroup.LayoutParams layoutParams=viewHolder.itemView.getLayoutParams();
         layoutParams.height=(parentHeight/6);
+
         return viewHolder;
     }
 
@@ -71,16 +75,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     //int,position，position是滚入到屏幕内子项的编号
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        获取实体类的数据
+//        根据点击位置绑定数据
         My my=mList.get(position);
+        holder.itemView.setTag(position);
         holder.MyImage.setImageResource(my.getImage());
         holder.MyIntro.setText(my.getIntro());
         holder.Bracket.setImageResource(my.getBracket());
+        //设置itemView的点击事件,整个的Item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(listener!=null){
-                    listener.onItemClick(v,position,mList.get(position).getIntro());
+                    listener.onItemClick(v, (Integer) v.getTag());
                 }
             }
         });

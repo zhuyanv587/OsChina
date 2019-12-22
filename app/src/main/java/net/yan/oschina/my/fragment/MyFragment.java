@@ -28,7 +28,8 @@ import butterknife.ButterKnife;
 public class MyFragment extends Fragment implements View.OnClickListener {
     private String titles[] = {"社区活跃度", "社区影响力", "技术贡献度", "活动活跃性", "开源贡献度", "学习积极性"};
     private double[] percent = {1, 0.4, 0.6, 0.5, 0.8, 0.3};
-    private MyAdapter adapter;
+    //定义recyclerView的适配器
+    private MyAdapter myadapter;
     //用于子项数据的数组
     private List<My> myList = new ArrayList<>();
 
@@ -60,16 +61,25 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         initMy();
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         myRecycler.setLayoutManager(manager);
-        MyAdapter myAdapter = new MyAdapter(myList);
-        myRecycler.setAdapter(myAdapter);
+        myadapter = new MyAdapter(getActivity(),myList);
+        myRecycler.setAdapter(myadapter);
 //        调用了adapter里面的方法
-        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+        myadapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position, String id) {
-                Intent intent=new Intent(getActivity(), MessageActivity.class);
-                startActivity(intent);
+            public void onItemClick(View view, int position) {
+                My data=myList.get(position);
+                String name=data.getIntro();
+                switch (name){
+                    case "我的消息":
+                        startActivity(new Intent(getActivity(),MessageActivity.class));
+                        break;
+                    case "我的勋章":
+                        startActivity(new Intent(getActivity(),LoginActivity.class));
+                        break;
+                }
             }
         });
+
     }
 
     private void initMy() {
