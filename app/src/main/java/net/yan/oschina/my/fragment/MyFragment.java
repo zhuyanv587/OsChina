@@ -10,8 +10,16 @@ import android.widget.ImageView;
 import net.yan.oschina.R;
 import net.yan.oschina.my.Adapter.MyAdapter;
 import net.yan.oschina.my.NetView.netView;
+import net.yan.oschina.my.activity.AttentionActivity;
 import net.yan.oschina.my.activity.LoginActivity;
+import net.yan.oschina.my.activity.MedalActivity;
 import net.yan.oschina.my.activity.MessageActivity;
+import net.yan.oschina.my.activity.MyblogActivity;
+import net.yan.oschina.my.activity.MydeliverActivity;
+import net.yan.oschina.my.activity.MyquestionActivity;
+import net.yan.oschina.my.activity.ReadActivity;
+import net.yan.oschina.my.activity.RosterActivity;
+import net.yan.oschina.my.activity.ShakyActivity;
 import net.yan.oschina.my.entity.My;
 
 import java.util.ArrayList;
@@ -74,7 +82,28 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                         startActivity(new Intent(getActivity(),MessageActivity.class));
                         break;
                     case "我的勋章":
-                        startActivity(new Intent(getActivity(),LoginActivity.class));
+                        startActivity(new Intent(getActivity(), MedalActivity.class));
+                        break;
+                    case "我的博客":
+                        startActivity(new Intent(getActivity(), MyblogActivity.class));
+                        break;
+                    case "阅读记录":
+                        startActivity(new Intent(getActivity(), ReadActivity.class));
+                        break;
+                    case "我的灰名单":
+                        startActivity(new Intent(getActivity(), RosterActivity.class));
+                        break;
+                    case "我的问答":
+                        startActivity(new Intent(getActivity(), MyquestionActivity.class));
+                        break;
+                    case "我的投递":
+                        startActivity(new Intent(getActivity(), MydeliverActivity.class));
+                        break;
+                    case "我的活动":
+                        startActivity(new Intent(getActivity(), ShakyActivity.class));
+                        break;
+                    case "关注标签":
+                        startActivity(new Intent(getActivity(), AttentionActivity.class));
                         break;
                 }
             }
@@ -99,7 +128,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         myList.add(thrown);
         My activity = new My(R.mipmap.activity, "我的活动", R.mipmap.bracket);
         myList.add(activity);
-        My sign = new My(R.mipmap.lable, "关注便签", R.mipmap.bracket);
+        My sign = new My(R.mipmap.lable, "关注标签", R.mipmap.bracket);
         myList.add(sign);
         My share = new My(R.mipmap.share, "邀请好友", R.mipmap.bracket);
         myList.add(share);

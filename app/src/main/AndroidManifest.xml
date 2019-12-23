@@ -18,7 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".my.activity.MessageActivity"></activity>
+        <activity android:name=".my.activity.MedalActivity"></activity>
+        <activity android:name=".my.activity.AttentionActivity" />
+        <activity android:name=".my.activity.ReadActivity" />
+        <activity android:name=".my.activity.MyblogActivity" />
+        <activity android:name=".my.activity.ShakyActivity" />
+        <activity android:name=".my.activity.MydeliverActivity" />
+        <activity android:name=".my.activity.MyquestionActivity" />
+        <activity android:name=".my.activity.RosterActivity" />
+        <activity android:name=".my.activity.MessageActivity" />
         <activity android:name=".my.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

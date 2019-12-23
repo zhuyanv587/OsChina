@@ -10,17 +10,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:src="@mipmap/one"
-            android:layout_width="330dp"
-            android:layout_height="260dp"
+            android:src="@mipmap/bigone"
+            android:layout_width="300dp"
+            android:layout_height="350dp"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="V / K"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="50dp"/>
+
     </LinearLayout>
 </LinearLayout>
