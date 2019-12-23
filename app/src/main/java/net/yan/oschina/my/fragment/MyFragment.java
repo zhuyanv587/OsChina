@@ -105,6 +105,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     case "关注标签":
                         startActivity(new Intent(getActivity(), AttentionActivity.class));
                         break;
+
                 }
             }
         });
