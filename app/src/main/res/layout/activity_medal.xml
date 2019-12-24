@@ -21,7 +21,7 @@
         android:background="#888989" />
 
     <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/viewPagerTab"
+        android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#EEE9E9"
@@ -31,13 +31,25 @@
         app:tl_indicator_color="@color/primary"
         app:tl_indicator_height="2dp"
         app:tl_indicator_width_equal_title="false"
-        app:tl_tab_padding="22dp"
+        app:tl_tab_padding="20dp"
         app:tl_tab_space_equal="true"
         app:tl_textSelectColor="@color/primary"
         app:tl_textUnselectColor="#888989"
-        app:tl_textsize="18sp"
+        app:tl_textsize="15sp"
         app:tl_underline_color="#888989"
         app:tl_underline_height="0dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#888989"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
 
 
 </LinearLayout>
