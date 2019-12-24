@@ -13,7 +13,7 @@
         app:radius="17" />
 
     <LinearLayout
-        android:id="@+id/lin"
+        android:id="@+id/layout_tweet"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="#8B8386"
             android:text="发动弹"
@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/tv_search"
+        android:id="@+id/layout_question"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
@@ -66,7 +66,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/tv_course"
+        android:id="@+id/layout_text"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentRight="true"

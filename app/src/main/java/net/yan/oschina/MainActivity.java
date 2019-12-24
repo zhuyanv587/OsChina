@@ -1,15 +1,19 @@
 package net.yan.oschina;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.next.easynavigation.view.EasyNavigationBar;
 
+import net.yan.oschina.activity.QuestionActivity;
+import net.yan.oschina.activity.TextActivity;
+import net.yan.oschina.activity.TweetActivity;
 import net.yan.oschina.discovery.fragment.DiscoveryFragment;
 import net.yan.oschina.my.fragment.MyFragment;
 import net.yan.oschina.news.fragment.NewsFragment;
@@ -60,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         mMoreWindow.init(linearLayout);
 
         View view = LayoutInflater.from(this).inflate(R.layout.custom_add_view, null);
-
         bar.titleItems(tabText)
                 .normalIconItems(normalIcon)
                 .selectIconItems(selectIcon)
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 }).build();
+
     }
 
 
@@ -107,5 +111,4 @@ public class MainActivity extends AppCompatActivity {
 
         mMoreWindow.showMoreWindow(linearLayout);
     }
-
 }

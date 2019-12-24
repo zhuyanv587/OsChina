@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Handler;
@@ -23,6 +24,9 @@ import android.widget.RelativeLayout;
 import com.ms_square.etsyblur.BlurringView;
 
 import net.yan.oschina.R;
+import net.yan.oschina.activity.QuestionActivity;
+import net.yan.oschina.activity.TextActivity;
+import net.yan.oschina.activity.TweetActivity;
 
 public class MoreWindow extends PopupWindow implements OnClickListener {
 
@@ -35,6 +39,8 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
     private int mHeight;
     private int statusBarHeight;
     private Handler mHandler = new Handler();
+
+    private LinearLayout tweet,question,text;
 
     public MoreWindow(Activity context) {
         mContext = context;
@@ -61,6 +67,13 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
         layout = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.more_window, null);
 
         setContentView(layout);
+
+        tweet = layout.findViewById(R.id.layout_tweet);
+        tweet.setOnClickListener(this);
+        question = layout.findViewById(R.id.layout_question);
+        question.setOnClickListener(this);
+        text = layout.findViewById(R.id.layout_text);
+        text.setOnClickListener(this);
 
         close = (ImageView) layout.findViewById(R.id.iv_close);
         close.setOnClickListener(new OnClickListener() {
@@ -129,14 +142,13 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
             }
         });
 
-
         showAnimation(layout);
 
     }
 
     private void showAnimation(ViewGroup layout) {
         try {
-            LinearLayout linearLayout = layout.findViewById(R.id.lin);
+            LinearLayout linearLayout = layout.findViewById(R.id.layout_tweet);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -219,11 +231,17 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
         }
 
         switch (v.getId()) {
-            case R.id.lin:
+            case R.id.layout_tweet:
+                Intent intent = new Intent(mContext, TweetActivity.class);
+                mContext.startActivity(intent);
                 break;
-            case R.id.tv_search:
+            case R.id.layout_question:
+                intent = new Intent(mContext, QuestionActivity.class);
+                mContext.startActivity(intent);
                 break;
-            case R.id.tv_course:
+            case R.id.layout_text:
+                intent = new Intent(mContext, TextActivity.class);
+                mContext.startActivity(intent);
                 break;
         }
 
@@ -232,4 +250,5 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
     float fromDpToPx(float dp) {
         return dp * Resources.getSystem().getDisplayMetrics().density;
     }
+
 }
