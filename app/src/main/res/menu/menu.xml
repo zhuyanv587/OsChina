@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wechat"
+        android:icon="@mipmap/wechat"
+        android:title="微信" />
+    <item
+        android:id="@+id/friends"
+        android:icon="@mipmap/friends"
+        android:title="朋友圈" />
+    <item
+        android:id="@+id/webo"
+        android:icon="@mipmap/webo"
+        android:title="微博" />
+    <item
+        android:id="@+id/qq"
+        android:icon="@mipmap/qq"
+        android:title="QQ" />
+    <item
+        android:id="@+id/internet"
+        android:icon="@mipmap/internet"
+        android:title="浏览器" />
+    <item
+        android:id="@+id/copy"
+        android:icon="@mipmap/copy"
+        android:title="复制链接" />
+
+</menu>

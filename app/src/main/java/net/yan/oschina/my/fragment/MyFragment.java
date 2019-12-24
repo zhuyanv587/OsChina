@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import net.yan.oschina.R;
 import net.yan.oschina.my.Adapter.MyAdapter;
@@ -32,6 +33,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.curzbin.library.BottomDialog;
+import me.curzbin.library.Item;
+import me.curzbin.library.OnItemClickListener;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
     private String titles[] = {"社区活跃度", "社区影响力", "技术贡献度", "活动活跃性", "开源贡献度", "学习积极性"};
@@ -105,7 +109,21 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     case "关注标签":
                         startActivity(new Intent(getActivity(), AttentionActivity.class));
                         break;
+                    case "邀请好友":
+                        new BottomDialog(getActivity())
+                                .title(R.string.share_title)//设置标题
+                                .layout(BottomDialog.HORIZONTAL)//设置内容layout,默认为线性
+//                                .orientation(BottomDialog.VERTICAL)//设置滑动方向
+                                .inflateMenu(R.menu.menu)//传入菜单内容
+                                .itemClick(new OnItemClickListener() {
+                                    @Override
+                                    public void click(Item item) {
+                                        Toast.makeText(getActivity(), getString(R.string.share_title) + item.getTitle(), Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .show();
 
+                        break;
                 }
             }
         });
