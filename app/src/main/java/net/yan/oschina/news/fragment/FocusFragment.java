@@ -24,12 +24,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class FocusFragment extends Fragment implements View.OnClickListener {
+public class FocusFragment extends Fragment {
     private Unbinder binder;
     @BindView(R.id.recyclerView_focus)
     RecyclerView recyclerView_focus;
 //    @BindView(R.id.log)
-    Button log;
+   //
 
     private List<Focus> lists = new ArrayList<>();
 
@@ -61,8 +61,8 @@ public class FocusFragment extends Fragment implements View.OnClickListener {
         recyclerView_focus.setAdapter(focusAdapter);
 
         View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_focus,null);
-        log = view1.findViewById(R.id.log);
-        log.setOnClickListener(this);
+//        log = view1.findViewById(R.id.log);
+//        log.setOnClickListener(this);
         focusAdapter.setHeaderView(view1);
     }
 
@@ -72,13 +72,13 @@ public class FocusFragment extends Fragment implements View.OnClickListener {
         binder.unbind();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.log:
-                Intent intent=new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.log:
+//                Intent intent=new Intent(getActivity(), LoginActivity.class);
+//                startActivity(intent);
+//                break;
+//        }
+//    }
 }
