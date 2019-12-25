@@ -28,14 +28,14 @@ public class TweetFragment extends Fragment {
     ViewPager pager;
     private Unbinder binder;
 
-    private ArrayList<Fragment> mFragment=new ArrayList<>();
-    private final String[] mTitles={"最新","热门","话题","乱弹","我的"};
+    private ArrayList<Fragment> mFragment = new ArrayList<>();
+    private final String[] mTitles = {"最新", "热门", "话题", "乱弹", "我的"};
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_tweet,container,false);
-        binder= ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_tweet, container, false);
+        binder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -45,18 +45,20 @@ public class TweetFragment extends Fragment {
         mFragment.add(new LatestFragment());
         mFragment.add(new HotFragment());
         mFragment.add(new SubjectFragment());
-        mFragment.add(new  ThrumFragment());
+        mFragment.add(new ThrumFragment());
         mFragment.add(new MeFragment());
-        tab.setViewPager(pager,mTitles,getActivity(),mFragment);
+        tab.setViewPager(pager, mTitles, getActivity(), mFragment);
         pager.setAdapter(new MyAdapter(getChildFragmentManager()));
         tab.setViewPager(pager);
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binder.unbind();
     }
-    class MyAdapter extends FragmentPagerAdapter{
+
+    class MyAdapter extends FragmentPagerAdapter {
 
         public MyAdapter(@NonNull FragmentManager fm) {
             super(fm);
