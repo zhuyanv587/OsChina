@@ -24,6 +24,7 @@
             android:text="暂时没有新动态" />
 
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
