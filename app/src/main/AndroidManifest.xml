@@ -18,8 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TextActivity"></activity>
-        <activity android:name=".news.activity.SearchActivity"></activity>
+        <activity android:name=".my.activity.MySetActivity"></activity>
+        <activity android:name=".activity.TextActivity" />
+        <activity android:name=".news.activity.SearchActivity" />
         <activity android:name=".activity.QuestionActivity" />
         <activity android:name=".activity.TweetActivity" />
         <activity android:name=".my.activity.MedalActivity" />
@@ -31,7 +32,7 @@
         <activity android:name=".my.activity.MyquestionActivity" />
         <activity android:name=".my.activity.RosterActivity" />
         <activity android:name=".my.activity.MessageActivity" />
-        <activity android:name=".my.activity.LoginActivity"></activity>
+        <activity android:name=".my.activity.LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

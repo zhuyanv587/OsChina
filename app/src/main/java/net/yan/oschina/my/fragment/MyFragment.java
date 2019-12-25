@@ -6,23 +6,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.okhttplib.HttpInfo;
+import com.okhttplib.OkHttpUtil;
+import com.okhttplib.callback.Callback;
+
 import net.yan.oschina.R;
-import net.yan.oschina.my.Adapter.MyAdapter;
 import net.yan.oschina.my.NetView.netView;
 import net.yan.oschina.my.activity.AttentionActivity;
 import net.yan.oschina.my.activity.LoginActivity;
 import net.yan.oschina.my.activity.MedalActivity;
 import net.yan.oschina.my.activity.MessageActivity;
+import net.yan.oschina.my.activity.MySetActivity;
 import net.yan.oschina.my.activity.MyblogActivity;
 import net.yan.oschina.my.activity.MydeliverActivity;
 import net.yan.oschina.my.activity.MyquestionActivity;
 import net.yan.oschina.my.activity.ReadActivity;
 import net.yan.oschina.my.activity.RosterActivity;
 import net.yan.oschina.my.activity.ShakyActivity;
+import net.yan.oschina.my.adapter.MyAdapter;
 import net.yan.oschina.my.entity.My;
+import net.yan.oschina.my.entity.MyInformation;
+import net.yan.oschina.net.URLList;
+import net.yan.oschina.util.ACache;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +50,10 @@ import me.curzbin.library.OnItemClickListener;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
     private String titles[] = {"社区活跃度", "社区影响力", "技术贡献度", "活动活跃性", "开源贡献度", "学习积极性"};
-    private double[] percent = {1, 0.4, 0.6, 0.5, 0.8, 0.3};
+    private double[] percent = {1, 1, 1, 1, 1, 1};
     //定义recyclerView的适配器
     private MyAdapter myadapter;
+
     //用于子项数据的数组
     private List<My> myList = new ArrayList<>();
 
@@ -55,6 +67,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     netView netView;
     @BindView(R.id.my_Recycler)
     RecyclerView myRecycler;
+    @BindView(R.id.my_name)
+    TextView myName;
 
     @Nullable
     @Override
@@ -70,20 +84,37 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         head.setOnClickListener(this);
+        set.setOnClickListener(this);
+
+        OkHttpUtil.getDefault(this)
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_MY_INFORMATION + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                    @Override
+                    public void onSuccess(HttpInfo info) throws IOException {
+                        MyInformation result = info.getRetDetail(MyInformation.class);
+                        Glide.with(getContext()).load(result.getAvatar()).into(head);
+                        myName.setText(result.getName());
+                    }
+
+                    @Override
+                    public void onFailure(HttpInfo info) throws IOException {
+                        Toast.makeText(getActivity(), "网络请求失败", Toast.LENGTH_LONG).show();
+                    }
+                });
+
         initMy();
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         myRecycler.setLayoutManager(manager);
-        myadapter = new MyAdapter(getActivity(),myList);
+        myadapter = new MyAdapter(getActivity(), myList);
         myRecycler.setAdapter(myadapter);
-//        调用了adapter里面的方法
+        //调用了adapter里面的方法
         myadapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                My data=myList.get(position);
-                String name=data.getIntro();
-                switch (name){
+                My data = myList.get(position);
+                String name = data.getIntro();
+                switch (name) {
                     case "我的消息":
-                        startActivity(new Intent(getActivity(),MessageActivity.class));
+                        startActivity(new Intent(getActivity(), MessageActivity.class));
                         break;
                     case "我的勋章":
                         startActivity(new Intent(getActivity(), MedalActivity.class));
@@ -111,18 +142,16 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                         break;
                     case "邀请好友":
                         new BottomDialog(getActivity())
-                                .title(R.string.share_title)//设置标题
+                                .title(R.string.share_titles)//设置标题
                                 .layout(BottomDialog.HORIZONTAL)//设置内容layout,默认为线性
-//                                .orientation(BottomDialog.VERTICAL)//设置滑动方向
                                 .inflateMenu(R.menu.menu)//传入菜单内容
                                 .itemClick(new OnItemClickListener() {
                                     @Override
                                     public void click(Item item) {
-                                        Toast.makeText(getActivity(), getString(R.string.share_title) + item.getTitle(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), getString(R.string.share_titles) + item.getTitle(), Toast.LENGTH_LONG).show();
                                     }
                                 })
                                 .show();
-
                         break;
                 }
             }
@@ -158,6 +187,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.my_title:
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.my_set:
+                intent = new Intent(getActivity(), MySetActivity.class);
                 startActivity(intent);
                 break;
         }

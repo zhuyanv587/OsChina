@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.okhttplib.HttpInfo;
@@ -71,7 +72,7 @@ public class InformationFragment extends Fragment {
 
                     @Override
                     public void onFailure(HttpInfo info) throws IOException {
-                        System.out.println(info);
+                        Toast.makeText(getActivity(),"网络请求失败",Toast.LENGTH_LONG).show();
                     }
                 });
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);

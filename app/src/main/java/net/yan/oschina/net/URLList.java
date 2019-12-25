@@ -12,4 +12,6 @@ public class URLList {
     public final static String SEND_TWEET = domain+ "/action/openapi/tweet_pub";
     public final static String SEND_QUESTION = domain+"/action/openapi/post_pub";
     public final static String GET_THRUM = domain + "/action/openapi/tweet_list?access_token=";
+    public final static String GET_MY_INFORMATION = domain + "/action/openapi/user?access_token=";
+
 }

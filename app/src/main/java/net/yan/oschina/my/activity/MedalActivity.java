@@ -6,7 +6,6 @@ import android.view.View;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import net.yan.oschina.R;
-import net.yan.oschina.my.Adapter.MyAdapter;
 import net.yan.oschina.my.fragment.ActivityFragment;
 import net.yan.oschina.my.fragment.DevoteFragment;
 import net.yan.oschina.my.fragment.QuestFragment;
@@ -25,7 +24,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class MedalActivity extends AppCompatActivity {
     private Toolbar toolbar;

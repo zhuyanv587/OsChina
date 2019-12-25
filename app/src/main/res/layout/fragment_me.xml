@@ -23,6 +23,7 @@
                 android:src="@mipmap/head"/>
 
             <TextView
+                android:id="@+id/my_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="点击头像登录"
@@ -32,18 +33,19 @@
 
             <ImageView
                 android:id="@+id/my_set"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/set_pic"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="100dp"/>
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="100dp"
+                android:background="@color/primary"/>
 
             <ImageView
                 android:id="@+id/my_scan"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="13dp"
                 android:src="@mipmap/scan_pic"/>
 
         </LinearLayout>
