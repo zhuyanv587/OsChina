@@ -1,14 +1,13 @@
 package net.yan.oschina.news.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import net.yan.oschina.R;
-import net.yan.oschina.my.activity.LoginActivity;
 import net.yan.oschina.news.adapter.FocusAdapter;
 import net.yan.oschina.news.entity.Focus;
 
@@ -38,28 +37,27 @@ public class FocusFragment extends Fragment {
     }
 
     @Nullable
-     @Override
-     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         View view=inflater.inflate(R.layout.fragment_focus,container,false);
-         binder= ButterKnife.bind(this,view);
-         return view;
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_focus, container, false);
+        binder = ButterKnife.bind(this, view);
+        return view;
 
-     }
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Focus focus=new Focus();
-        for (int i=0;i<9;i++){
+        Focus focus = new Focus();
+        for (int i = 0; i < 9; i++) {
             lists.add(focus);
         }
-        RecyclerView.LayoutManager manager= new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         recyclerView_focus.setLayoutManager(manager);
-        focusAdapter=new FocusAdapter(R.layout.item_focus,lists);
+        focusAdapter = new FocusAdapter(R.layout.item_focus, lists);
         recyclerView_focus.setAdapter(focusAdapter);
 
-        View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_focus,null);
-
+        View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_focus, null);
         focusAdapter.setHeaderView(view1);
     }
 

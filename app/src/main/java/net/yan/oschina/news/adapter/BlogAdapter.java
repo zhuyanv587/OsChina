@@ -24,4 +24,9 @@ public class BlogAdapter extends BaseQuickAdapter<Blog, BaseViewHolder> {
         helper.setText(R.id.blog_time,item.getPubDate());
         helper.setText(R.id.blog_num,item.getCommentCount()+"");
     }
+
+    @Override
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+    }
 }
