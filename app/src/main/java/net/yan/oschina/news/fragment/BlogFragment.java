@@ -1,5 +1,6 @@
 package net.yan.oschina.news.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +11,16 @@ import com.okhttplib.OkHttpUtil;
 import com.okhttplib.callback.Callback;
 
 import net.yan.oschina.R;
+import net.yan.oschina.my.fragment.MyFragment;
 import net.yan.oschina.net.BlogResult;
 import net.yan.oschina.net.URLList;
+import net.yan.oschina.news.activity.BlogDetailActivity;
 import net.yan.oschina.news.adapter.BlogAdapter;
 import net.yan.oschina.news.entity.Blog;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +40,15 @@ public class BlogFragment extends Fragment {
     private List<Blog> lists=new ArrayList<>();
     @BindView(R.id.recyclerView_blog)
     RecyclerView recyclerView;
-
+//数据处理的对象
     BlogAdapter blogAdapter;
+
+    public BlogFragment(){
+
+    }
+    public static MyFragment myInstance(){
+        return new MyFragment();
+    }
 
     @Nullable
     @Override
@@ -73,6 +84,17 @@ public class BlogFragment extends Fragment {
 
         View view1 = View.inflate(getActivity(),R.layout.blog_picture,null);
         blogAdapter.addHeaderView(view1);
+        //设置adapter的点击事件，得到item的点击位置，将blog传值过去
+        blogAdapter.setOnItemClickListener(new BlogAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Intent intent=new Intent(getContext(), BlogDetailActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("blog", (Serializable) lists.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
     }
 
