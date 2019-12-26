@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.okhttplib.callback.Callback;
@@ -33,7 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton question_image1, question_image2, question_image3, question_image4, question_image5, question_image6;
+    private ImageView question_image1, question_image2, question_image3, question_image4, question_image5, question_image6;
 
     private ImageButton btn_back;
 

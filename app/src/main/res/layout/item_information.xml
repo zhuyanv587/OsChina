@@ -16,12 +16,13 @@
             android:id="@+id/image1"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/recommend"/>
         <ImageView
             android:id="@+id/image2"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/recommend2"/>
 
         <TextView
             android:id="@+id/text1"
