@@ -87,6 +87,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                             @Override
                             public void onSuccess(HttpInfo info) throws IOException {
                                 Toast.makeText(QuestionActivity.this, "发送成功", Toast.LENGTH_LONG).show();
+                                finish();
                             }
 
                             @Override
