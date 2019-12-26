@@ -2,23 +2,26 @@ package net.yan.oschina.news.entity;
 
 import net.yan.oschina.Notice;
 
-public class BlogInformation {
-    private long id;
+import java.util.List;
+
+public class NewsInformation {
+    private int id;
     private String body;
     private String pubDate;
     private String author;
     private String title;
-    private long authorid;
+    private int authorid;
+    private List<News> relativies;
     private Notice notice;
     private int favorite;
     private int commentCount;
     private String url;
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -54,12 +57,20 @@ public class BlogInformation {
         return title;
     }
 
-    public void setAuthorid(long authorid) {
+    public void setAuthorid(int authorid) {
         this.authorid = authorid;
     }
 
-    public long getAuthorid() {
+    public int getAuthorid() {
         return authorid;
+    }
+
+    public void setRelativies(List<News> relativies) {
+        this.relativies = relativies;
+    }
+
+    public List<News> getRelativies() {
+        return relativies;
     }
 
     public void setNotice(Notice notice) {

@@ -1,16 +1,12 @@
 package net.yan.oschina.news.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.okhttplib.HttpInfo;
 import com.okhttplib.OkHttpUtil;
 import com.okhttplib.callback.Callback;
@@ -23,7 +19,6 @@ import net.yan.oschina.news.entity.Question;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,21 +32,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class QuestionFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class QuestionFragment extends Fragment {
     private Unbinder binder;
-    private int mShowType=0;
-    private MyHandler myHandler=new MyHandler(this);
 
     private List<Question> lists = new ArrayList<>();
 
     @BindView(R.id.recycler_question)
     RecyclerView recyclerView;
-    @BindView(R.id.swipeLayout)
+    @BindView(R.id.swipefresh_quest)
     SwipeRefreshLayout swipeRefreshLayout;
-
     QuestionAdapter questionAdapter;
-    //延迟事间
-    private static final int DELAY_MILLIS=1500;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,7 +53,28 @@ public class QuestionFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fresh();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+
+                },3000);
+            }
+        });
         Log.i("result", "onViewCreated: "+URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token"));
+
+    }
+
+    private void fresh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
                     @Override

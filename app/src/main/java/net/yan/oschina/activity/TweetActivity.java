@@ -90,6 +90,7 @@ public class TweetActivity extends AppCompatActivity implements View.OnClickList
                             @Override
                             public void onSuccess(HttpInfo info) throws IOException {
                                 Toast.makeText(TweetActivity.this, "发送成功", Toast.LENGTH_LONG).show();
+                                finish();
 
                             }
 

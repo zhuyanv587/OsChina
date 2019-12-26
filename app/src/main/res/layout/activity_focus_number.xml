@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".news.activity.BlogDetailActivity">
+    tools:context=".my.activity.FocusNumberActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tool_bar"
+        android:id="@+id/focus_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="?attr/color"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         android:theme="@style/ToolbarTheme"
-        app:title="博客详情"
+        app:title="关注列表"
         app:titleTextColor="@android:color/black" />
 
-    <WebView
-        android:id="@+id/wv_blog_detail"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/focus_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

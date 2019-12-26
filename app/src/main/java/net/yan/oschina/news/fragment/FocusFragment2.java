@@ -1,4 +1,4 @@
-package net.yan.oschina.tweet.fragment;
+package net.yan.oschina.news.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,10 @@ import com.okhttplib.OkHttpUtil;
 import com.okhttplib.callback.Callback;
 
 import net.yan.oschina.R;
-import net.yan.oschina.net.HotResult;
-import net.yan.oschina.net.LatestResult;
+import net.yan.oschina.net.FousResult;
 import net.yan.oschina.net.URLList;
-import net.yan.oschina.tweet.entity.Hot;
-import net.yan.oschina.tweet.adapter.HotAdapter;
+import net.yan.oschina.news.adapter.FocusAdapter;
+import net.yan.oschina.news.entity.Focus;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
@@ -32,52 +31,52 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class HotFragment extends Fragment {
+public class FocusFragment2 extends Fragment {
     private Unbinder binder;
-    private HotAdapter hotAdapter;
-    private List<Hot> list = new ArrayList<>();
-    @BindView(R.id.recyclerView_hot)
-    RecyclerView recyclerView;
-    @BindView(R.id.swipefresh_hot)
+    @BindView(R.id.recyclerView_focus)
+    RecyclerView recyclerView_focus;
+    @BindView(R.id.swipefresh_foucs)
     SwipeRefreshLayout swipeRefreshLayout;
+    private List<Focus> lists = new ArrayList<>();
+
+    private FocusAdapter focusAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hot, container, false);
+        View view = inflater.inflate(R.layout.fragment_focus, container, false);
         binder = ButterKnife.bind(this, view);
         return view;
-    }
 
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        resh();
+        fresh();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //放入要刷新的内容
-                        resh();
-                        //下拉刷新的圆圈是否显示
+                        //                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
                         swipeRefreshLayout.setRefreshing(false);
                     }
 
                 },3000);
             }
         });
-
     }
 
-    private void resh() {
+    private void fresh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_HOT + ACache.get(getActivity()).getAsString("token") + "&user=-1").build(), new Callback() {
                     @Override
                     public void onSuccess(HttpInfo info) throws IOException {
-                        HotResult result = info.getRetDetail(HotResult.class);
-                        hotAdapter.replaceData(result.getTweetlist());
+                        FousResult result = info.getRetDetail(FousResult.class);
+                        focusAdapter.replaceData(result.getTweetlist());
                     }
 
                     @Override
@@ -85,15 +84,14 @@ public class HotFragment extends Fragment {
                         Toast.makeText(getActivity(), "网络请求失败", Toast.LENGTH_LONG).show();
                     }
                 });
-
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(manager);
-        hotAdapter = new HotAdapter(R.layout.item_hot, list);
-        recyclerView.setAdapter(hotAdapter);
+        recyclerView_focus.setLayoutManager(manager);
+        focusAdapter = new FocusAdapter(R.layout.item_foucs2, lists);
+        recyclerView_focus.setAdapter(focusAdapter);
     }
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         binder.unbind();
     }
 }

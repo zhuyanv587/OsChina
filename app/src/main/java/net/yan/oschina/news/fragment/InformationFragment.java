@@ -1,6 +1,7 @@
 package net.yan.oschina.news.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,9 @@ import com.youth.banner.loader.ImageLoader;
 import net.yan.oschina.R;
 import net.yan.oschina.net.InformationResult;
 import net.yan.oschina.net.URLList;
+import net.yan.oschina.news.activity.BlogDetailActivity;
+import net.yan.oschina.news.activity.NewsDetailActivity;
+import net.yan.oschina.news.adapter.BlogAdapter;
 import net.yan.oschina.news.adapter.InformationAdapter;
 import net.yan.oschina.news.entity.Information;
 import net.yan.oschina.util.ACache;
@@ -33,6 +37,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -42,7 +47,8 @@ public class InformationFragment extends Fragment {
 
     @BindView(R.id.recyclerView_information)
     RecyclerView recyclerView;
-
+    @BindView(R.id.swipefresh_info)
+    SwipeRefreshLayout swipeRefreshLayout;
     private List<Information> lists = new ArrayList<>();
 
     private InformationAdapter mInformationAdapter;
@@ -61,6 +67,25 @@ public class InformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        fresh();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },3000);
+            }
+        });
+
+    }
+    private void fresh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_INFORMATION + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
                     @Override
@@ -83,6 +108,16 @@ public class InformationFragment extends Fragment {
         //处理Header
         View view1 = View.inflate(getActivity(), R.layout.xbanner, null);
         mInformationAdapter.addHeaderView(view1);
+
+        //设置adapter的点击事件，得到item的点击位置，将blog传值过去
+        mInformationAdapter.setOnItemClickListener(new InformationAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Intent intent=new Intent(getContext(), NewsDetailActivity.class);
+                startActivity(intent);
+            }
+
+        });
 
         Banner banner = view1.findViewById(R.id.banner);
 
