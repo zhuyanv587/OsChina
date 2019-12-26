@@ -52,7 +52,7 @@ public class FocusFragment2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         OkHttpUtil.getDefault(this)
-                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_FOCUS + ACache.get(getActivity()).getAsString("token") + "&user=-1").build(), new Callback() {
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_HOT + ACache.get(getActivity()).getAsString("token") + "&user=-1").build(), new Callback() {
                     @Override
                     public void onSuccess(HttpInfo info) throws IOException {
                         FousResult result = info.getRetDetail(FousResult.class);

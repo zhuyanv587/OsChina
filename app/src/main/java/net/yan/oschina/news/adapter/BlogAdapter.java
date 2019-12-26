@@ -1,9 +1,5 @@
 package net.yan.oschina.news.adapter;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +25,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class BlogAdapter extends BaseQuickAdapter<Blog, BaseViewHolder> {
-    private List<Blog> blogList;
 
     public BlogAdapter(int layoutResId, @Nullable List<Blog> data) {
         super(layoutResId, data);
-        this.blogList = data;
     }
 
     @Override
@@ -69,10 +63,6 @@ public class BlogAdapter extends BaseQuickAdapter<Blog, BaseViewHolder> {
         void OnItemClick(View view, int position);
     }
 
-    @Override
-    public int getItemCount() {
-        return blogList.size();
-    }
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {

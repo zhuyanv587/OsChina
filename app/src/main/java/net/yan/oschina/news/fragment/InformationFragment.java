@@ -1,6 +1,7 @@
 package net.yan.oschina.news.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,9 @@ import com.youth.banner.loader.ImageLoader;
 import net.yan.oschina.R;
 import net.yan.oschina.net.InformationResult;
 import net.yan.oschina.net.URLList;
+import net.yan.oschina.news.activity.BlogDetailActivity;
+import net.yan.oschina.news.activity.NewsDetailActivity;
+import net.yan.oschina.news.adapter.BlogAdapter;
 import net.yan.oschina.news.adapter.InformationAdapter;
 import net.yan.oschina.news.entity.Information;
 import net.yan.oschina.util.ACache;
@@ -83,6 +87,16 @@ public class InformationFragment extends Fragment {
         //处理Header
         View view1 = View.inflate(getActivity(), R.layout.xbanner, null);
         mInformationAdapter.addHeaderView(view1);
+
+        //设置adapter的点击事件，得到item的点击位置，将blog传值过去
+        mInformationAdapter.setOnItemClickListener(new InformationAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Intent intent=new Intent(getContext(), NewsDetailActivity.class);
+                startActivity(intent);
+            }
+
+        });
 
         Banner banner = view1.findViewById(R.id.banner);
 

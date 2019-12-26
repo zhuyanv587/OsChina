@@ -18,9 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".news.activity.BlogDetailActivity"></activity>
+        <activity android:name=".news.activity.NewsDetailActivity"></activity>
+        <activity android:name=".news.activity.BlogDetailActivity" />
         <activity android:name=".activity.TextActivity" />
-        <activity android:name=".my.activity.MySetActivity"></activity>
+        <activity android:name=".my.activity.MySetActivity" />
         <activity android:name=".news.activity.SearchActivity" />
         <activity android:name=".activity.QuestionActivity" />
         <activity android:name=".activity.TweetActivity" />

@@ -42,17 +42,11 @@ public class BlogFragment extends Fragment {
     private List<Blog> lists=new ArrayList<>();
     @BindView(R.id.recyclerView_blog)
     RecyclerView recyclerView;
-//数据处理的对象
+    //数据处理的对象
     BlogAdapter blogAdapter;
-
-    private String url;
-    private long id;
 
     public BlogFragment(){
 
-    }
-    public static MyFragment myInstance(){
-        return new MyFragment();
     }
 
     @Nullable
