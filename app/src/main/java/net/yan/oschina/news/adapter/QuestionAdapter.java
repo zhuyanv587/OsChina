@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 
 public class QuestionAdapter extends BaseQuickAdapter<Question, BaseViewHolder> {
 
-
     public QuestionAdapter(int layoutResId, @Nullable List<Question> data) {
         super(layoutResId, data);
     }
@@ -30,4 +29,5 @@ public class QuestionAdapter extends BaseQuickAdapter<Question, BaseViewHolder> 
         helper.setText(R.id.question_time,item.getPubDate());
         helper.setText(R.id.question_num,item.getAnswerCount()+"");
     }
+
 }

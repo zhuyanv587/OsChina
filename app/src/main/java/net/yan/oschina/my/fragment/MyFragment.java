@@ -27,7 +27,7 @@ import net.yan.oschina.my.activity.MyquestionActivity;
 import net.yan.oschina.my.activity.ReadActivity;
 import net.yan.oschina.my.activity.RosterActivity;
 import net.yan.oschina.my.activity.ShakyActivity;
-import net.yan.oschina.my.adapter.MyAdapter;
+import net.yan.oschina.my.Adapter.MyAdapter;
 import net.yan.oschina.my.entity.My;
 import net.yan.oschina.my.entity.MyInformation;
 import net.yan.oschina.net.URLList;

@@ -37,7 +37,6 @@ import butterknife.Unbinder;
 public class BlogFragment extends Fragment {
     private Unbinder binder;
 
-
     private List<Blog> lists=new ArrayList<>();
     @BindView(R.id.recyclerView_blog)
     RecyclerView recyclerView;
@@ -52,7 +51,6 @@ public class BlogFragment extends Fragment {
     }
 
     private String url;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

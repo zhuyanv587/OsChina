@@ -49,7 +49,7 @@ public class BlogDetailActivity extends AppCompatActivity {
         Bundle bundle=intent.getExtras();
         if(bundle!=null){
             //传值拿什么接收呢？在之前将点击的Item的信息传过来
-//                 BlogInfomation blogInfomation=bundle.get("blog");
+//            BlogInfomation blogInfomation=bundle.get("blog");
                  //让它加载这个网页
             wvBlog.loadUrl(URLList.GET_BLOG);
             settings=wvBlog.getSettings();
