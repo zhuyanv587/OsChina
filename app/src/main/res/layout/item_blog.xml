@@ -71,6 +71,15 @@
             android:gravity="right|center_vertical"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/blog_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:hint="124313"
+                android:textColor="@color/black"
+                android:layout_marginRight="20dp"/>
+
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"

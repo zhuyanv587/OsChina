@@ -2,7 +2,7 @@ package net.yan.oschina.news.entity;
 
 public class Blog {
 
-    private int id;
+    private long id;
     private String pubDate;
     private String author;
     private String title;
@@ -10,11 +10,11 @@ public class Blog {
     private int type;
     private int commentCount;
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

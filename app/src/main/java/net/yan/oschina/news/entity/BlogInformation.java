@@ -3,7 +3,7 @@ package net.yan.oschina.news.entity;
 import net.yan.oschina.Notice;
 
 public class BlogInformation {
-    private int id;
+    private long id;
     private String body;
     private String pubDate;
     private String author;
@@ -14,11 +14,11 @@ public class BlogInformation {
     private int commentCount;
     private String url;
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

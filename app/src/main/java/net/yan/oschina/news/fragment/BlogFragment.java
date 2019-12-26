@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.okhttplib.HttpInfo;
@@ -22,6 +23,7 @@ import net.yan.oschina.news.entity.BlogInformation;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,12 +39,14 @@ import butterknife.Unbinder;
 public class BlogFragment extends Fragment {
     private Unbinder binder;
 
-
     private List<Blog> lists=new ArrayList<>();
     @BindView(R.id.recyclerView_blog)
     RecyclerView recyclerView;
 //数据处理的对象
     BlogAdapter blogAdapter;
+
+    private String url;
+    private long id;
 
     public BlogFragment(){
 
@@ -50,8 +54,6 @@ public class BlogFragment extends Fragment {
     public static MyFragment myInstance(){
         return new MyFragment();
     }
-
-    private String url;
 
     @Nullable
     @Override
@@ -71,12 +73,6 @@ public class BlogFragment extends Fragment {
                     public void onSuccess(HttpInfo info) throws IOException {
                         BlogResult result = info.getRetDetail(BlogResult.class);
                         blogAdapter.replaceData(result.getBloglist());
-                        BlogInformation information = info.getRetDetail(BlogInformation.class);
-                        url = information.getUrl();
-                        Intent intent = new Intent();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("url",url);
-                        intent.putExtras(bundle);
                     }
 
                     @Override
@@ -92,16 +88,15 @@ public class BlogFragment extends Fragment {
 
         View view1 = View.inflate(getActivity(),R.layout.blog_picture,null);
         blogAdapter.addHeaderView(view1);
+
         //设置adapter的点击事件，得到item的点击位置，将blog传值过去
         blogAdapter.setOnItemClickListener(new BlogAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, int position) {
                 Intent intent=new Intent(getContext(), BlogDetailActivity.class);
-//                Bundle bundle=new Bundle();
-//                bundle.putSerializable("blog", (Serializable) lists.get(position));
-//                intent.putExtras(bundle);
                 startActivity(intent);
             }
+
         });
 
     }

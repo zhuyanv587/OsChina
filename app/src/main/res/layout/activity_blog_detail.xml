@@ -16,7 +16,8 @@
         android:fitsSystemWindows="true"
         android:theme="@style/ToolbarTheme"
         app:title="博客详情"
-        app:titleTextColor="@android:color/black"/>
+        app:titleTextColor="@android:color/black" />
+
     <WebView
         android:id="@+id/wv_blog_detail"
         android:layout_width="match_parent"
