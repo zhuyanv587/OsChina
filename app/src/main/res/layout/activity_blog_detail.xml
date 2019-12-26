@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".news.activity.BlogDetailActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="?attr/actionBarSize"
+        android:background="?attr/color"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
+        android:theme="@style/ToolbarTheme"
         app:title="博客详情"
-        app:titleTextColor="@android:color/background_dark"/>
+        app:titleTextColor="@android:color/black"/>
     <WebView
         android:id="@+id/wv_blog_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

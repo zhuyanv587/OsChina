@@ -22,7 +22,6 @@ import net.yan.oschina.news.entity.BlogInformation;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,9 +97,9 @@ public class BlogFragment extends Fragment {
             @Override
             public void OnItemClick(View view, int position) {
                 Intent intent=new Intent(getContext(), BlogDetailActivity.class);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("blog", (Serializable) lists.get(position));
-                intent.putExtras(bundle);
+//                Bundle bundle=new Bundle();
+//                bundle.putSerializable("blog", (Serializable) lists.get(position));
+//                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
