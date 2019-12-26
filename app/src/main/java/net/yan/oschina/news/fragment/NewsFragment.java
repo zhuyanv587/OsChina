@@ -46,7 +46,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFragment.add(new FocusFragment());
+        mFragment.add(new FocusFragment2());
         mFragment.add(new SoftwareFragment());
         mFragment.add(new InformationFragment());
         mFragment.add(new RecommendFragment());
