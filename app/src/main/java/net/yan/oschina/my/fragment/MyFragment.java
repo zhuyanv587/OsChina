@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,9 @@ import com.okhttplib.callback.Callback;
 import net.yan.oschina.R;
 import net.yan.oschina.my.NetView.netView;
 import net.yan.oschina.my.activity.AttentionActivity;
+import net.yan.oschina.my.activity.CollectNumberActivity;
+import net.yan.oschina.my.activity.FansNumberActivity;
+import net.yan.oschina.my.activity.FocusNumberActivity;
 import net.yan.oschina.my.activity.LoginActivity;
 import net.yan.oschina.my.activity.MedalActivity;
 import net.yan.oschina.my.activity.MessageActivity;
@@ -27,9 +31,12 @@ import net.yan.oschina.my.activity.MyquestionActivity;
 import net.yan.oschina.my.activity.ReadActivity;
 import net.yan.oschina.my.activity.RosterActivity;
 import net.yan.oschina.my.activity.ShakyActivity;
+import net.yan.oschina.my.activity.TweetNumberActivity;
 import net.yan.oschina.my.adapter.MyAdapter;
 import net.yan.oschina.my.entity.My;
+import net.yan.oschina.my.entity.MyDetail;
 import net.yan.oschina.my.entity.MyInformation;
+import net.yan.oschina.net.HotResult;
 import net.yan.oschina.net.URLList;
 import net.yan.oschina.util.ACache;
 
@@ -69,11 +76,31 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     RecyclerView myRecycler;
     @BindView(R.id.my_name)
     TextView myName;
+    @BindView(R.id.tv_tweet_number)
+    TextView tweet_number;
+    @BindView(R.id.tv_collect_number)
+    TextView collect_number;
+    @BindView(R.id.tv_focus_number)
+    TextView focus_number;
+    @BindView(R.id.tv_fans_number)
+    TextView fans_number;
+
+    private LinearLayout tweetNumber,collectNumber,focusNumber,fansNumber;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me, container, false);
+        tweetNumber = view.findViewById(R.id.layout_tweet_number);
+        collectNumber = view.findViewById(R.id.layout_collect_number);
+        focusNumber = view.findViewById(R.id.layout_focus_number);
+        fansNumber = view.findViewById(R.id.layout_fans_number);
+
+        tweetNumber.setOnClickListener(this);
+        collectNumber.setOnClickListener(this);
+        focusNumber.setOnClickListener(this);
+        fansNumber.setOnClickListener(this);
+
         ButterKnife.bind(this, view);
         netView.setTitles(titles);
         netView.setPercent(percent);
@@ -191,6 +218,36 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.my_set:
                 intent = new Intent(getActivity(), MySetActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.layout_tweet_number:
+                OkHttpUtil.getDefault(this)
+                        .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_MY_DETAIL + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                            @Override
+                            public void onSuccess(HttpInfo info) throws IOException {
+                                Toast.makeText(getActivity(), "网络请求成功", Toast.LENGTH_LONG).show();
+                                MyDetail detail = info.getRetDetail(MyDetail.class);
+                                tweet_number.setText(detail.getFollowersCount());
+                            }
+
+                            @Override
+                            public void onFailure(HttpInfo info) throws IOException {
+                                Toast.makeText(getActivity(), "网络请求失败", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                intent = new Intent(getActivity(), TweetNumberActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.layout_collect_number:
+                intent = new Intent(getActivity(), CollectNumberActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.layout_focus_number:
+                intent = new Intent(getActivity(), FocusNumberActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.layout_fans_number:
+                intent = new Intent(getActivity(), FansNumberActivity.class);
                 startActivity(intent);
                 break;
         }

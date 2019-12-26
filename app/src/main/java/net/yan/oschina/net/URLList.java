@@ -26,5 +26,6 @@ public class URLList {
     public final static String GET_BLOG_INFORMATION = domain + "/action/openapi/blog_detail";
     //获取新闻详情
     public final static String GET_INFORMATION_DETAIL = domain + "/action/openapi/news_detail";
-
+    //个人主页详情
+    public final static String GET_MY_DETAIL = domain + "/action/openapi/my_information?access_token=";
 }
