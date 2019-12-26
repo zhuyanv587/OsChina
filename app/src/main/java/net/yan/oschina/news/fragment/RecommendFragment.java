@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -36,7 +37,8 @@ public class RecommendFragment extends Fragment {
 
     @BindView(R.id.recycler_recommend)
     RecyclerView recyclerView;
-
+@BindView(R.id.swipefresh_remm)
+    SwipeRefreshLayout swipeRefreshLayout;
     RecommendAdapter recommendAdapter;
 
     @Nullable
@@ -50,6 +52,27 @@ public class RecommendFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fresh();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+//                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+
+                },30000);
+            }
+        });
+
+    }
+
+    private void fresh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_RECOMMEND + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
                     @Override
@@ -70,6 +93,7 @@ public class RecommendFragment extends Fragment {
         recommendAdapter = new RecommendAdapter(R.layout.item_recommend,lists);
         recyclerView.setAdapter(recommendAdapter);
     }
+
 
     @Override
     public void onDestroyView() {

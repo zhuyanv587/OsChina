@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -38,7 +39,8 @@ public class QuestionFragment extends Fragment {
 
     @BindView(R.id.recycler_question)
     RecyclerView recyclerView;
-
+    @BindView(R.id.swipefresh_quest)
+    SwipeRefreshLayout swipeRefreshLayout;
     QuestionAdapter questionAdapter;
     @Nullable
     @Override
@@ -51,7 +53,28 @@ public class QuestionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fresh();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+
+                },3000);
+            }
+        });
         Log.i("result", "onViewCreated: "+URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token"));
+
+    }
+
+    private void fresh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
                     @Override
@@ -70,7 +93,6 @@ public class QuestionFragment extends Fragment {
         questionAdapter = new QuestionAdapter(R.layout.item_question,lists);
         recyclerView.setAdapter(questionAdapter);
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

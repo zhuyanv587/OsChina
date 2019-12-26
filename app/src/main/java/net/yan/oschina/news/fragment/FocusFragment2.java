@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -34,7 +35,8 @@ public class FocusFragment2 extends Fragment {
     private Unbinder binder;
     @BindView(R.id.recyclerView_focus)
     RecyclerView recyclerView_focus;
-
+    @BindView(R.id.swipefresh_foucs)
+    SwipeRefreshLayout swipeRefreshLayout;
     private List<Focus> lists = new ArrayList<>();
 
     private FocusAdapter focusAdapter;
@@ -50,7 +52,25 @@ public class FocusFragment2 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fresh();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
 
+                },3000);
+            }
+        });
+    }
+
+    private void fresh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_HOT + ACache.get(getActivity()).getAsString("token") + "&user=-1").build(), new Callback() {
                     @Override
@@ -69,7 +89,6 @@ public class FocusFragment2 extends Fragment {
         focusAdapter = new FocusAdapter(R.layout.item_foucs2, lists);
         recyclerView_focus.setAdapter(focusAdapter);
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

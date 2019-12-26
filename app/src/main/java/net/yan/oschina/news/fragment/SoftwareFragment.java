@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -38,7 +39,8 @@ public class SoftwareFragment extends Fragment {
 
     @BindView(R.id.recycler_software)
     RecyclerView recyclerView;
-
+@BindView(R.id.swipefresh_soft)
+    SwipeRefreshLayout swipeRefreshLayout;
     SoftwareAdapter softwareAdapter;
 
     @Nullable
@@ -52,29 +54,49 @@ public class SoftwareFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        OkHttpUtil.getDefault(this)
-                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_SOFTWARE + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+        fresh();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
                     @Override
-                    public void onSuccess(HttpInfo info) throws IOException {
-                        SoftwareResult result = info.getRetDetail(SoftwareResult.class);
-                        softwareAdapter.replaceData(result.getProjectlist());
-
+                    public void run() {
+//                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
                     }
 
-                    @Override
-                    public void onFailure(HttpInfo info) throws IOException {
-                        Toast.makeText(getActivity(),"网络请求失败",Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
-        recyclerView.setLayoutManager(manager);
-        softwareAdapter = new SoftwareAdapter(R.layout.item_software,lists);
-        recyclerView.setAdapter(softwareAdapter);
-        View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_software,null);
-        softwareAdapter.setHeaderView(view1);
-
+                }, 30000);
+            }
+        });
     }
+
+    private void fresh() {
+            OkHttpUtil.getDefault(this)
+                    .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_SOFTWARE + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                        @Override
+                        public void onSuccess(HttpInfo info) throws IOException {
+                            SoftwareResult result = info.getRetDetail(SoftwareResult.class);
+                            softwareAdapter.replaceData(result.getProjectlist());
+
+                        }
+
+                        @Override
+                        public void onFailure(HttpInfo info) throws IOException {
+                            Toast.makeText(getActivity(),"网络请求失败",Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+            RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+            recyclerView.setLayoutManager(manager);
+            softwareAdapter = new SoftwareAdapter(R.layout.item_software,lists);
+            recyclerView.setAdapter(softwareAdapter);
+            View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.header_software,null);
+            softwareAdapter.setHeaderView(view1);
+
+        }
+
 
     @Override
     public void onDestroy() {

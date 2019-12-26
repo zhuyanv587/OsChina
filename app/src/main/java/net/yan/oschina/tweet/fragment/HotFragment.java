@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -37,7 +38,8 @@ public class HotFragment extends Fragment {
     private List<Hot> list = new ArrayList<>();
     @BindView(R.id.recyclerView_hot)
     RecyclerView recyclerView;
-
+    @BindView(R.id.swipefresh_hot)
+    SwipeRefreshLayout swipeRefreshLayout;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,13 +52,32 @@ public class HotFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        resh();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //放入要刷新的内容
+                        resh();
+                        //下拉刷新的圆圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                },3000);
+            }
+        });
+
+    }
+
+    private void resh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_HOT + ACache.get(getActivity()).getAsString("token") + "&user=-1").build(), new Callback() {
                     @Override
                     public void onSuccess(HttpInfo info) throws IOException {
                         HotResult result = info.getRetDetail(HotResult.class);
                         hotAdapter.replaceData(result.getTweetlist());
-
                     }
 
                     @Override
@@ -69,9 +90,7 @@ public class HotFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         hotAdapter = new HotAdapter(R.layout.item_hot, list);
         recyclerView.setAdapter(hotAdapter);
-
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
