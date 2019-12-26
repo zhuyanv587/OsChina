@@ -45,4 +45,9 @@ public class BlogAdapter extends BaseQuickAdapter<Blog, BaseViewHolder> {
     public interface OnItemClickListener{
         void OnItemClick(View view, int position);
     }
+
+    @Override
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+    }
 }

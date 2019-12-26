@@ -82,7 +82,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:padding="8dp"
-            android:src="@drawable/compose_toolbar_picture_selector" />
+            android:src="@drawable/photograph_selector" />
 
         <ImageButton
             android:id="@+id/tweet_img2"
@@ -91,7 +91,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:padding="8dp"
-            android:src="@drawable/compose_toolbar_mention_selector" />
+            android:src="@drawable/art_tech_selector" />
 
         <ImageButton
             android:id="@+id/tweet_img3"
@@ -100,7 +100,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:padding="8dp"
-            android:src="@drawable/compose_toolbar_trend_selector" />
+            android:src="@drawable/pound_key_selector" />
 
         <ImageButton
             android:id="@+id/tweet_img4"
@@ -109,7 +109,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:padding="8dp"
-            android:src="@drawable/compose_toolbar_emoji_selector" />
+            android:src="@drawable/smiling_face_selector" />
     </LinearLayout>
 
 </LinearLayout>

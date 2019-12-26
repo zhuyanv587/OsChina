@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.okhttplib.HttpInfo;
 import com.okhttplib.OkHttpUtil;
@@ -17,6 +18,7 @@ import net.yan.oschina.net.URLList;
 import net.yan.oschina.news.activity.BlogDetailActivity;
 import net.yan.oschina.news.adapter.BlogAdapter;
 import net.yan.oschina.news.entity.Blog;
+import net.yan.oschina.news.entity.BlogInformation;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
@@ -50,6 +52,8 @@ public class BlogFragment extends Fragment {
         return new MyFragment();
     }
 
+    private String url;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,12 +72,17 @@ public class BlogFragment extends Fragment {
                     public void onSuccess(HttpInfo info) throws IOException {
                         BlogResult result = info.getRetDetail(BlogResult.class);
                         blogAdapter.replaceData(result.getBloglist());
-
+                        BlogInformation information = info.getRetDetail(BlogInformation.class);
+                        url = information.getUrl();
+                        Intent intent = new Intent();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("url",url);
+                        intent.putExtras(bundle);
                     }
 
                     @Override
                     public void onFailure(HttpInfo info) throws IOException {
-                        System.out.println(info);
+                        Toast.makeText(getActivity(),"网络请求失败",Toast.LENGTH_LONG).show();
                     }
                 });
 

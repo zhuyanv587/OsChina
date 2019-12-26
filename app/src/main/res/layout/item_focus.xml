@@ -40,7 +40,7 @@
                 android:textSize="10sp"
                 android:text="PandaRSS 作者"/>
             <Button
-                android:id="@+id/bt_focus"
+                android:id="@+id/bnt_focus"
                 android:layout_width="50dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_horizontal"
@@ -83,7 +83,7 @@
                 android:textSize="10sp"
                 android:text="Node-Lua 作者"/>
             <Button
-                android:id="@+id/bt_focus1"
+                android:id="@+id/bnt_focus1"
                 android:layout_width="50dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_horizontal"

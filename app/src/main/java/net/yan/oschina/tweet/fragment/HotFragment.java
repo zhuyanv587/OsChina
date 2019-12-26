@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.okhttplib.HttpInfo;
 import com.okhttplib.OkHttpUtil;
@@ -33,7 +34,7 @@ import butterknife.Unbinder;
 public class HotFragment extends Fragment {
     private Unbinder binder;
     private HotAdapter hotAdapter;
-    private List<Hot> list=new ArrayList<>();
+    private List<Hot> list = new ArrayList<>();
     @BindView(R.id.recyclerView_hot)
     RecyclerView recyclerView;
 
@@ -50,7 +51,7 @@ public class HotFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         OkHttpUtil.getDefault(this)
-                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_HOT + ACache.get(getActivity()).getAsString("token")+"&user=-1").build(), new Callback() {
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_HOT + ACache.get(getActivity()).getAsString("token") + "&user=-1").build(), new Callback() {
                     @Override
                     public void onSuccess(HttpInfo info) throws IOException {
                         HotResult result = info.getRetDetail(HotResult.class);
@@ -60,16 +61,17 @@ public class HotFragment extends Fragment {
 
                     @Override
                     public void onFailure(HttpInfo info) throws IOException {
-                        System.out.println(info);
+                        Toast.makeText(getActivity(), "网络请求失败", Toast.LENGTH_LONG).show();
                     }
                 });
 
-        RecyclerView.LayoutManager manager=new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
-        hotAdapter=new HotAdapter(R.layout.item_hot,list);
+        hotAdapter = new HotAdapter(R.layout.item_hot, list);
         recyclerView.setAdapter(hotAdapter);
 
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
