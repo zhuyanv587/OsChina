@@ -82,7 +82,7 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/question_img1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:layout_weight="1"
             android:src="@mipmap/quone" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/question_img2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
             android:layout_weight="1"
             android:src="@mipmap/qutwo" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/question_img3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             android:layout_weight="1"
             android:src="@mipmap/quthree" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/question_img4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             android:layout_weight="1"
             android:src="@mipmap/qusen" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/question_img5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
             android:layout_weight="1"
             android:src="@mipmap/qufive" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/question_img6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

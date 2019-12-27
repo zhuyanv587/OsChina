@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MySetActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton back;
-    private ImageView setImage1,setImage2,setImage3,setImage4,setImage5;
+    private ImageView setImage1, setImage2, setImage3, setImage4, setImage5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +34,11 @@ public class MySetActivity extends AppCompatActivity implements View.OnClickList
         setImage3.setOnClickListener(this);
         setImage4.setOnClickListener(this);
         setImage5.setOnClickListener(this);
-
-
-
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.img_set_back:
                 finish();
                 break;

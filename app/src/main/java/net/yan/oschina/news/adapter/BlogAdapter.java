@@ -35,7 +35,6 @@ public class BlogAdapter extends BaseQuickAdapter<Blog, BaseViewHolder> {
         helper.setText(R.id.blog_title, item.getTitle());
         helper.setText(R.id.blog_author, item.getAuthor());
         helper.setText(R.id.blog_time, item.getPubDate());
-        helper.setText(R.id.blog_id, item.getId() + "");
         helper.setText(R.id.blog_num, item.getCommentCount() + "");
 
         OkHttpUtil.getDefault(this)

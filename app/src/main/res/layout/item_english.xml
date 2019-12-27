@@ -80,7 +80,7 @@
         android:id="@+id/english_img"
         android:layout_width="match_parent"
         android:layout_height="95dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/blog_picture"/>
 
     </LinearLayout>
 

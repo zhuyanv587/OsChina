@@ -184,7 +184,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_Recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#DAD9D9" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

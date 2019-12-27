@@ -186,25 +186,25 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initMy() {
-        My message = new My(R.mipmap.message, "我的消息", R.mipmap.bracket);
+        My message = new My(R.mipmap.message1, "我的消息", R.mipmap.bracket);
         myList.add(message);
-        My medal = new My(R.mipmap.demal, "我的勋章", R.mipmap.bracket);
+        My medal = new My(R.mipmap.dema, "我的勋章", R.mipmap.bracket);
         myList.add(medal);
-        My read = new My(R.mipmap.read, "阅读记录", R.mipmap.bracket);
+        My read = new My(R.mipmap.read1, "阅读记录", R.mipmap.bracket);
         myList.add(read);
-        My blog = new My(R.mipmap.test, "我的博客", R.mipmap.bracket);
+        My blog = new My(R.mipmap.test1, "我的博客", R.mipmap.bracket);
         myList.add(blog);
-        My grey_name = new My(R.mipmap.name, "我的灰名单", R.mipmap.bracket);
+        My grey_name = new My(R.mipmap.name1, "我的灰名单", R.mipmap.bracket);
         myList.add(grey_name);
-        My question = new My(R.mipmap.my_question, "我的博客", R.mipmap.bracket);
+        My question = new My(R.mipmap.question1, "我的问答", R.mipmap.bracket);
         myList.add(question);
-        My thrown = new My(R.mipmap.thrown, "我的投递", R.mipmap.bracket);
+        My thrown = new My(R.mipmap.thrown1, "我的投递", R.mipmap.bracket);
         myList.add(thrown);
-        My activity = new My(R.mipmap.activity, "我的活动", R.mipmap.bracket);
+        My activity = new My(R.mipmap.activity1, "我的活动", R.mipmap.bracket);
         myList.add(activity);
-        My sign = new My(R.mipmap.lable, "关注标签", R.mipmap.bracket);
+        My sign = new My(R.mipmap.guanzhu, "关注标签", R.mipmap.bracket);
         myList.add(sign);
-        My share = new My(R.mipmap.share, "邀请好友", R.mipmap.bracket);
+        My share = new My(R.mipmap.share1, "邀请好友", R.mipmap.bracket);
         myList.add(share);
     }
 

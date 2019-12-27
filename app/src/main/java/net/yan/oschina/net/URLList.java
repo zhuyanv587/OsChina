@@ -28,4 +28,7 @@ public class URLList {
     public final static String GET_INFORMATION_DETAIL = domain + "/action/openapi/news_detail";
     //个人主页详情
     public final static String GET_MY_DETAIL = domain + "/action/openapi/my_information?access_token=";
+    //我的动弹
+    public final static String GET_MY_TWEET = domain + "/action/openapi/tweet_list?access_token=";
+
 }
