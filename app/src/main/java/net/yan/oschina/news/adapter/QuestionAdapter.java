@@ -1,5 +1,6 @@
 package net.yan.oschina.news.adapter;
 
+import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -16,8 +17,9 @@ import androidx.annotation.Nullable;
 
 public class QuestionAdapter extends BaseQuickAdapter<Question, BaseViewHolder> {
 
+    private Context context;
     public QuestionAdapter(int layoutResId, @Nullable List<Question> data) {
-        super(layoutResId, data);
+        super(layoutResId,data);
     }
 
     @Override

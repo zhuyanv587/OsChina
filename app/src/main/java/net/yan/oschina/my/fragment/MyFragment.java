@@ -16,6 +16,7 @@ import com.okhttplib.OkHttpUtil;
 import com.okhttplib.callback.Callback;
 
 import net.yan.oschina.R;
+import net.yan.oschina.my.Adapter.MyAdapter;
 import net.yan.oschina.my.NetView.netView;
 import net.yan.oschina.my.activity.AttentionActivity;
 import net.yan.oschina.my.activity.CollectNumberActivity;
@@ -32,12 +33,9 @@ import net.yan.oschina.my.activity.ReadActivity;
 import net.yan.oschina.my.activity.RosterActivity;
 import net.yan.oschina.my.activity.ShakyActivity;
 import net.yan.oschina.my.activity.TweetNumberActivity;
-import net.yan.oschina.my.adapter.MyAdapter;
-import net.yan.oschina.my.Adapter.MyAdapter;
 import net.yan.oschina.my.entity.My;
 import net.yan.oschina.my.entity.MyDetail;
 import net.yan.oschina.my.entity.MyInformation;
-import net.yan.oschina.net.HotResult;
 import net.yan.oschina.net.URLList;
 import net.yan.oschina.util.ACache;
 

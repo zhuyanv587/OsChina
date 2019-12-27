@@ -1,12 +1,15 @@
 package net.yan.oschina.news.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.okhttplib.HttpInfo;
 import com.okhttplib.OkHttpUtil;
 import com.okhttplib.callback.Callback;
@@ -19,6 +22,7 @@ import net.yan.oschina.news.entity.Question;
 import net.yan.oschina.util.ACache;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,9 @@ import butterknife.Unbinder;
 
 public class QuestionFragment extends Fragment {
     private Unbinder binder;
+    private static final int DELAY_MILLIS = 1500;//延迟时间
+    private int mShowType=1;
+    private MyHandler myHandler = new MyHandler(this);
 
     private List<Question> lists = new ArrayList<>();
 
@@ -42,6 +49,7 @@ public class QuestionFragment extends Fragment {
     @BindView(R.id.swipefresh_quest)
     SwipeRefreshLayout swipeRefreshLayout;
     QuestionAdapter questionAdapter;
+    private int pageNum=1;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,11 +84,15 @@ public class QuestionFragment extends Fragment {
 
     private void fresh() {
         OkHttpUtil.getDefault(this)
-                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
+                //接口请求参数加上页数，（页数是应该加的）
+                .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token")+"&page="+pageNum).build(), new Callback() {
                     @Override
                     public void onSuccess(HttpInfo info) throws IOException {
                         QuestionResult result = info.getRetDetail(QuestionResult.class);
-                        questionAdapter.replaceData(result.getPost_list());
+                        //将数据加入到questionAdapter,但是因为里面原先是空的，所以加载一张页面的时候是要替代空的post_list的
+//                        questionAdapter.replaceData(result.getPost_list());
+                        //页数加加之后就变成了2，那么应该重新请求一下参数，将后来获取到的数据加上到原来的List里面
+                        questionAdapter.addData(result.getPost_list());
                     }
 
                     @Override
@@ -88,76 +100,57 @@ public class QuestionFragment extends Fragment {
                         Toast.makeText(getActivity(),"网络请求失败",Toast.LENGTH_LONG).show();
                     }
                 });
-        swipeRefreshLayout.setColorSchemeColors(Color.BLUE);
-        swipeRefreshLayout.setOnRefreshListener(this);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
         questionAdapter = new QuestionAdapter(R.layout.item_question,lists);
         recyclerView.setAdapter(questionAdapter);
-        //
+        //下拉框添加数据
         questionAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        //滑动最后一个item的时候回调onLoadMoreListener方法
         questionAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
                 mShowType++;
-                if (mShowType == 2) {
+                swipeRefreshLayout.setEnabled(false);  //上拉加载的时候关闭下拉刷新 之后再打开
+                if (mShowType ==3) {
                     myHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            //获取数据失败
                             questionAdapter.loadMoreFail();
                         }
                     }, DELAY_MILLIS);
-                } else if (mShowType >= 4) {
+                } else if (mShowType>=6) {
                     myHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            //数据全部加载完毕
                             questionAdapter.loadMoreEnd();
+                            Toast.makeText(getActivity(),"全部加载完毕",Toast.LENGTH_LONG).show();
                         }
                     }, DELAY_MILLIS);
                 } else {
                     myHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            questionAdapter.addData(addDatas());
+                            //成功获取更多数据
+//                            questionAdapter.addData(addDatas());
+                            //页数加载之后，执行fresh()方法，将数据加载到List后面
+                            pageNum++;
+                            fresh();
+                            //获得的数据条数赋给mshowType;
+                            mShowType=questionAdapter.getData().size();
+                            //加载完成不是加载结束，而是本次数据加载结束并且还有下页数据
                             questionAdapter.loadMoreComplete();
+                            Toast.makeText(getActivity(),"本页加载结束",Toast.LENGTH_LONG).show();
                         }
                     }, DELAY_MILLIS);
                 }
             }
-        });
-//        addHeadView();
-    }
+        },recyclerView);
 
-//    private void addHeadView() {
-//        View headerView = getLayoutInflater().inflate(R.layout.rv_header, null);
-//        headerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//        questionAdapter.addHeaderView(headerView);
-//        headerView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "your click headerView", Snackbar.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+    }
 //刷新列表
-
-    //增加信息,这里应该是新增加的信息
-    public static List<Question> addDatas() {
-        List<Question> mList = new ArrayList<>();
-        return mList;
-    }
-
-    @Override
-    public void onRefresh() {
-        myHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mShowType = 0;
-                questionAdapter.setNewData(lists);
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, DELAY_MILLIS);
-    }
 
     private static class MyHandler extends Handler {
 

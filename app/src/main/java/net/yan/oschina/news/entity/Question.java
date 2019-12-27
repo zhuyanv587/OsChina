@@ -1,6 +1,6 @@
 package net.yan.oschina.news.entity;
 
-public class Question {
+public class Question{
 
     private long answerCount;
     private String author;
