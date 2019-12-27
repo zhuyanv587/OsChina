@@ -75,7 +75,7 @@ public class QuestionFragment extends Fragment {
                     }
 
 
-                },3000);
+                },0);
             }
         });
         Log.i("result", "onViewCreated: "+URLList.GET_QUESTION + ACache.get(getActivity()).getAsString("token"));

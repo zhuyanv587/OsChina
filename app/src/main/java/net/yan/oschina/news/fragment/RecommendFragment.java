@@ -66,7 +66,7 @@ public class RecommendFragment extends Fragment {
                     }
 
 
-                },30000);
+                },0);
             }
         });
 
