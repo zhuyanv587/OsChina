@@ -67,7 +67,7 @@ public class SoftwareFragment extends Fragment {
                         swipeRefreshLayout.setRefreshing(false);
                     }
 
-                }, 30000);
+                }, 0);
             }
         });
     }

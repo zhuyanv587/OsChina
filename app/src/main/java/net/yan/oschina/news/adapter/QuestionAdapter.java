@@ -4,6 +4,8 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -25,7 +27,9 @@ public class QuestionAdapter extends BaseQuickAdapter<Question, BaseViewHolder> 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, Question item) {
         ImageView imageView = helper.getView(R.id.question_image);
-        Glide.with(mContext).load(item.getPortrait()).into(imageView);
+        Glide.with(mContext).load(item.getPortrait())
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(imageView);
         helper.setText(R.id.question_title,item.getTitle());
         helper.setText(R.id.question_author,item.getAuthor());
         helper.setText(R.id.question_time,item.getPubDate());

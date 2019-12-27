@@ -70,7 +70,7 @@ public class MeFragment extends Fragment {
                         swipeRefreshLayout.setRefreshing(false);
                     }
 
-                }, 3000);
+                }, 0);
             }
         });
     }

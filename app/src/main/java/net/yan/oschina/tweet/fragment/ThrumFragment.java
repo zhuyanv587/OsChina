@@ -62,7 +62,7 @@ public class ThrumFragment extends Fragment {
                         resh();
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                },3000);
+                },0);
             }
         });
 

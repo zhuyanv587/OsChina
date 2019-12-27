@@ -80,7 +80,7 @@ public class InformationFragment extends Fragment {
 //                        刷新的小圈圈是否显示
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                },3000);
+                },0);
             }
         });
 

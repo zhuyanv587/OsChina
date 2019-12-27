@@ -13,6 +13,7 @@ import com.okhttplib.callback.Callback;
 
 import net.yan.oschina.R;
 import net.yan.oschina.net.BlogResult;
+import net.yan.oschina.net.FousResult;
 import net.yan.oschina.net.URLList;
 import net.yan.oschina.news.activity.BlogDetailActivity;
 import net.yan.oschina.news.adapter.BlogAdapter;
@@ -28,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -38,6 +40,9 @@ public class BlogFragment extends Fragment {
     private List<Blog> lists=new ArrayList<>();
     @BindView(R.id.recyclerView_blog)
     RecyclerView recyclerView;
+
+    @BindView(R.id.swipefresh_blog)
+    SwipeRefreshLayout swipeRefreshLayout;
     //数据处理的对象
     BlogAdapter blogAdapter;
 
@@ -57,6 +62,34 @@ public class BlogFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fresh();
+        //设置adapter的点击事件，得到item的点击位置，将blog传值过去
+        blogAdapter.setOnItemClickListener(new BlogAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Intent intent=new Intent(getContext(), BlogDetailActivity.class);
+                startActivity(intent);
+            }
+
+        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //                        放入要刷新的数据
+                        fresh();
+//                        刷新的小圈圈是否显示
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                },0);
+            }
+        });
+    }
+
+    private void fresh() {
         OkHttpUtil.getDefault(this)
                 .doGetAsync(HttpInfo.Builder().setUrl(URLList.GET_BLOG + ACache.get(getActivity()).getAsString("token")).build(), new Callback() {
                     @Override
@@ -67,28 +100,17 @@ public class BlogFragment extends Fragment {
 
                     @Override
                     public void onFailure(HttpInfo info) throws IOException {
-                        Toast.makeText(getActivity(),"网络请求失败",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "网络请求失败", Toast.LENGTH_LONG).show();
                     }
                 });
 
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
-        blogAdapter = new BlogAdapter(R.layout.item_blog,lists);
+        blogAdapter = new BlogAdapter(R.layout.item_blog, lists);
         recyclerView.setAdapter(blogAdapter);
 
         View view1 = View.inflate(getActivity(),R.layout.blog_picture,null);
         blogAdapter.addHeaderView(view1);
-
-        //设置adapter的点击事件，得到item的点击位置，将blog传值过去
-        blogAdapter.setOnItemClickListener(new BlogAdapter.OnItemClickListener() {
-            @Override
-            public void OnItemClick(View view, int position) {
-                Intent intent=new Intent(getContext(), BlogDetailActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
     }
 
     @Override

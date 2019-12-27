@@ -65,7 +65,7 @@ public class HotFragment extends Fragment {
                         swipeRefreshLayout.setRefreshing(false);
                     }
 
-                },3000);
+                },0);
             }
         });
 

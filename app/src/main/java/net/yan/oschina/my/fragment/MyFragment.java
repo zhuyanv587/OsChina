@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.okhttplib.HttpInfo;
 import com.okhttplib.OkHttpUtil;
 import com.okhttplib.callback.Callback;
@@ -117,7 +119,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onSuccess(HttpInfo info) throws IOException {
                         MyInformation result = info.getRetDetail(MyInformation.class);
-                        Glide.with(getContext()).load(result.getAvatar()).into(head);
+                        Glide.with(getContext()).load(result.getAvatar())
+                                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                .into(head);
                         myName.setText(result.getName());
                     }
 

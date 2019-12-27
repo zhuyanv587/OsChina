@@ -70,7 +70,7 @@ public class LatestFragment extends Fragment {
                         //下拉刷新的圆圈是否显示
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                },1000);
+                },0);
             }
 
         });

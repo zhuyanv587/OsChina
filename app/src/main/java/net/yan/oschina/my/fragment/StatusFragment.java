@@ -24,4 +24,9 @@ public class StatusFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binder.unbind();
+    }
 }
